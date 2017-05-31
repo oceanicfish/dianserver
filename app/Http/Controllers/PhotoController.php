@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Image;
 
 use App\Http\Requests;
 
@@ -15,9 +17,9 @@ class PhotoController extends Controller
     public function __construct()
     {
 //        $this->middleware("auth");
-//        echo "TOKEN: <br>";
-//        echo csrf_token();
-//        echo "<br>";
+        echo "TOKEN: <br>";
+        echo csrf_token();
+        echo "<br>";
     }
 
     /**
@@ -32,4 +34,29 @@ class PhotoController extends Controller
 //        dd($photos);
         return json_encode($photos, JSON_UNESCAPED_UNICODE);
     }
+
+    public function upload(Request $request)
+    {
+
+
+        $photos = Input::file('photos');
+
+        $i = 0;
+
+        foreach($photos as $photo) {
+
+            $image = Image::make($photo);
+
+            $image->rotate(180);
+            $image->insert('uploads/qrcode.jpg', 'bottom-right', 10, 10);
+            $file_name = 'uploads/'. strval(time()) . strval($i) . '.jpg';
+            $image->save($file_name);
+            $i++;
+        }
+
+        echo "done";
+
+    }
+
+
 }

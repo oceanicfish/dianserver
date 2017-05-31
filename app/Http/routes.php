@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/photos', 'PhotoController@all');
+
+Route::get('/photo/all', 'PhotoController@all');
+Route::post('/photo/upload', 'PhotoController@upload');
