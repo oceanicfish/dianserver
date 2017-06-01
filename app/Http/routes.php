@@ -37,7 +37,7 @@ Route::get('photo/{filename}', function ($filename)
 
 Route::get('thumbnail/{filename}', function ($filename)
 {
-    $path = public_path('thumbnail') . '/' . $filename;
+    $path = public_path('thumbnails') . '/' . $filename;
 
     $file = File::get($path);
     $type = File::mimeType($path);
