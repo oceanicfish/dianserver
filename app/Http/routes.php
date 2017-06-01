@@ -34,3 +34,16 @@ Route::get('photo/{filename}', function ($filename)
 
     return $response;
 });
+
+Route::get('thumbnail/{filename}', function ($filename)
+{
+    $path = public_path('thumbnail') . '/' . $filename;
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});

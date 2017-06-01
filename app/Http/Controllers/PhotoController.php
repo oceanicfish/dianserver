@@ -29,7 +29,7 @@ class PhotoController extends Controller
      */
     public function all()
     {
-        $photos = Photo::all();
+        $photos = Photo::orderby('id', 'DESC')->get();
         /* 以下两种方法都可以解决乱码问题 */
 //        dd($photos);
         return json_encode($photos, JSON_UNESCAPED_UNICODE);
@@ -38,14 +38,15 @@ class PhotoController extends Controller
     public function upload(Request $request)
     {
 
-        $caption = $request->input('caption');
         $tags = $request->input('tags');
         $position = $request->input('position');
         $size = (int)$request->input('size');
         $watermark = Image::make(Input::file('watermark'))->resize($size, $size);
 
         $url_prefix = 'http://server.diandianplay.cn/photo/';
+        $thumbnail_prefix = 'http://server.diandianplay.cn/thumbnail/';
         $saved_path = 'uploads/';
+        $thumbnail_path = 'thumbnails';
 
         $photos = Input::file('photos');
 
@@ -54,16 +55,16 @@ class PhotoController extends Controller
         foreach($photos as $photo) {
 
             $image = Image::make($photo);
+            $thumbnail = $image->resize(720, 480);
 
-//            $image->rotate(180);
-//            $image->insert('uploads/qrcode.jpg', 'bottom-right', 10, 10);
             $image->insert($watermark, $position, 20, 20);
             $file_name = strval(time()) . strval($i) . '.jpg';
             $image->save($saved_path . $file_name);
+            $thumbnail->save($thumbnail_path . $file_name);
 
             Photo::create([
                 'path' => $url_prefix . $file_name,
-                'caption' => $caption,
+                'caption' => $thumbnail_prefix . $file_name,
                 'tags' => $tags
             ]);
 
