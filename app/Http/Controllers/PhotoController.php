@@ -57,10 +57,16 @@ class PhotoController extends Controller
 
             $file_name = strval(time()) . strval($i) . '.jpg';
 
-            $image = Image::make($photo);
-            $thumbnail = $image->resize(720, 480);
+            /*
+             * handling thumbnail
+             */
+            $thumbnail = Image::make($photo)->resize(480, 320);
             $thumbnail->save($thumbnail_path . $file_name);
 
+            /*
+             * handling image
+             */
+            $image = Image::make($photo);
             $image->insert($watermark, $position, 20, 20);
             $image->save($saved_path . $file_name);
 
