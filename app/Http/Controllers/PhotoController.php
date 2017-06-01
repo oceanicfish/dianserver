@@ -46,7 +46,7 @@ class PhotoController extends Controller
         $url_prefix = 'http://server.diandianplay.cn/photo/';
         $thumbnail_prefix = 'http://server.diandianplay.cn/thumbnail/';
         $saved_path = 'uploads/';
-        $thumbnail_path = 'thumbnails';
+        $thumbnail_path = 'thumbnails/';
 
         $photos = Input::file('photos');
 
