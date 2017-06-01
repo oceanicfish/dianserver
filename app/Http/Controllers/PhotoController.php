@@ -54,13 +54,15 @@ class PhotoController extends Controller
 
         foreach($photos as $photo) {
 
+
+            $file_name = strval(time()) . strval($i) . '.jpg';
+
             $image = Image::make($photo);
             $thumbnail = $image->resize(720, 480);
+            $thumbnail->save($thumbnail_path . $file_name);
 
             $image->insert($watermark, $position, 20, 20);
-            $file_name = strval(time()) . strval($i) . '.jpg';
             $image->save($saved_path . $file_name);
-            $thumbnail->save($thumbnail_path . $file_name);
 
             Photo::create([
                 'path' => $url_prefix . $file_name,
