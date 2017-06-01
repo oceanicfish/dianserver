@@ -40,9 +40,10 @@ class PhotoController extends Controller
 
         $caption = $request->input('caption');
         $tags = $request->input('tags');
-        $watermark = Image::make(Input::file('watermark'));
         $position = $request->input('position');
         $size = (int)$request->input('size');
+        $watermark = Image::make(Input::file('watermark'))->resize($size, $size);
+
         $url_prefix = 'http://server.diandianplay.cn/photo/';
         $saved_path = 'uploads/';
 
@@ -56,7 +57,7 @@ class PhotoController extends Controller
 
 //            $image->rotate(180);
 //            $image->insert('uploads/qrcode.jpg', 'bottom-right', 10, 10);
-            $image->insert($watermark, $position, $size, $size);
+            $image->insert($watermark, $position, 20, 20);
             $file_name = strval(time()) . strval($i) . '.jpg';
             $image->save($saved_path . $file_name);
 
