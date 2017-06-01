@@ -43,7 +43,7 @@ class PhotoController extends Controller
         $watermark = Image::make(Input::file('watermark'));
         $position = $request->input('position');
         $size = (int)$request->input('size');
-        $url_prefix = 'http://server.diandianplay.cn/';
+        $url_prefix = 'http://server.diandianplay.cn/public/';
 
         $photos = Input::file('photos');
 
