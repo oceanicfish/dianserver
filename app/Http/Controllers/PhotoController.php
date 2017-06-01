@@ -43,7 +43,8 @@ class PhotoController extends Controller
         $watermark = Image::make(Input::file('watermark'));
         $position = $request->input('position');
         $size = (int)$request->input('size');
-        $url_prefix = 'http://server.diandianplay.cn/public/';
+        $url_prefix = 'http://server.diandianplay.cn/photo/';
+        $saved_path = 'uploads/';
 
         $photos = Input::file('photos');
 
@@ -56,8 +57,8 @@ class PhotoController extends Controller
 //            $image->rotate(180);
 //            $image->insert('uploads/qrcode.jpg', 'bottom-right', 10, 10);
             $image->insert($watermark, $position, $size, $size);
-            $file_name = 'uploads/'. strval(time()) . strval($i) . '.jpg';
-            $image->save($file_name);
+            $file_name = strval(time()) . strval($i) . '.jpg';
+            $image->save($saved_path . $file_name);
 
             Photo::create([
                 'path' => $url_prefix . $file_name,

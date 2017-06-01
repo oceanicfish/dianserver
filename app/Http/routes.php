@@ -18,3 +18,19 @@ Route::get('/', function () {
 
 Route::get('/photo/all', 'PhotoController@all');
 Route::post('/photo/upload', 'PhotoController@upload');
+
+/**
+ * photo download route
+ */
+Route::get('photo/{filename}', function ($filename)
+{
+    $path = public_path('uploads') . '/' . $filename;
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
