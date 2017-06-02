@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::get('/photo/all', 'PhotoController@all');
+Route::get('/photo/{tags}', 'PhotoController@photoByTags');
 Route::post('/photo/upload', 'PhotoController@upload');
 Route::get('/photo/autothumb', 'PhotoController@autoThumb');
 

@@ -35,6 +35,19 @@ class PhotoController extends Controller
         return json_encode($photos, JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * get all buyers of a specified show
+     *
+     *
+     */
+    public function photoByTags($tags)
+    {
+        $photos = Photo::orderby('id', 'DESC')->where('tags', $tags)->get();
+        /* 以下两种方法都可以解决乱码问题 */
+//        dd($photos);
+        return json_encode($photos, JSON_UNESCAPED_UNICODE);
+    }
+
     public function autoThumb()
     {
         $photos = Photo::orderby('id', 'DESC')->get();
