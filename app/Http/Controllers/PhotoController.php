@@ -35,6 +35,33 @@ class PhotoController extends Controller
         return json_encode($photos, JSON_UNESCAPED_UNICODE);
     }
 
+    public function autoThumb()
+    {
+        $photos = Photo::orderby('id', 'DESC')->get();
+
+        $thumbnail_prefix = 'http://server.diandianplay.cn/thumbnail/';
+        $thumbnail_path = 'thumbnails/';
+        $i = 0;
+
+        foreach ($photos as $photo) {
+            $origin_image = Image::make($photo->path);
+            $file_name = strval(time()) . strval($i) . '.jpg';
+            $thumbnail = $origin_image->resize(480, 320);
+            $thumbnail->save($thumbnail_path . $file_name);
+
+            $photo->caption = $thumbnail_prefix . $file_name;
+            $photo->save();
+
+            $i++;
+        }
+
+
+
+        /* 以下两种方法都可以解决乱码问题 */
+//        dd($photos);
+        return json_encode($photos, JSON_UNESCAPED_UNICODE);
+    }
+
     public function upload(Request $request)
     {
 
