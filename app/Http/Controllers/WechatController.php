@@ -15,9 +15,10 @@ class WechatController extends Controller
     public function serve()
     {
 
-
-        $wechatServer = EasyWeChat::server();
-        dd($wechatServer->serve());
+        $request = $_REQUEST;
+        dd($request);
+//        $wechatServer = EasyWeChat::server();
+//        dd($wechatServer);
 //        return $wechatServer->serve();
     }
 }
