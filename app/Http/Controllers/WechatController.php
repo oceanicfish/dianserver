@@ -25,14 +25,20 @@ class WechatController extends Controller
          */
         $wechat = EasyWeChat::server();
 //        return $wechat->serve();
+        $openID = '';
 
-        $wechat->setMessageHandler(function ($message) {
+        $message = $wechat->getMessage();
+        $openID = $message->FromUserName;
+        $user = EasyWeChat::user($openID);
+
+
+        $wechat->setMessageHandler(function ($message) use ($user) {
             switch ($message->MsgType) {
                 case 'event':
                     return '收到事件消息';
                     break;
                 case 'text':
-                    return '收到文字消息 From ' . $message->FromUserName;
+                    return '收到文字消息 From ' . $user->nickname;
                     break;
                 case 'image':
                     return '收到图片消息';
