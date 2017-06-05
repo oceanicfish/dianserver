@@ -15,14 +15,11 @@ class WechatController extends Controller
 
     public function serve(Request $request)
     {
-
-        Log::info($request);
-//        dd($request->all());
+        /**
+         * EasyWeChat = $app
+         * EasyWeChat::server() = $app->server()
+         */
         $wechatServer = EasyWeChat::server();
-//        dd($wechatServer->server()->serve());
-//        Log::info($wechatServer-);
-        $response = $wechatServer->serve();
-        $response->headers->set('Content-Type', 'text/plain');
-        return $response;
+        return $wechatServer->serve();
     }
 }
