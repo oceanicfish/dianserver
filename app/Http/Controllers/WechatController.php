@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use EasyWeChat;
 use Illuminate\Support\Facades\Log;
+use EasyWeChat\Message\Text;
 
 class WechatController extends Controller
 {
@@ -17,52 +15,23 @@ class WechatController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function serve(Request $request)
+    public function serve(Request $request, $wechatServer)
     {
         /**
          * EasyWeChat = $app
          * EasyWeChat::server() = $app->server()
          */
-        $wechat = EasyWeChat::server();
-//        return $wechat->serve();
-        $openID = '';
+        $server = EasyWeChat::server();
 
-        $message = $wechat->getMessage();
+        $message = $server->getMessage();
         $openID = $message->FromUserName;
         $user = EasyWeChat::user($openID);
+        $nickname = $user->nickname;
+
+        $text = new Text(['content' => '您好！'.$nickname]);
+        $server->setMessageHandler($text);
+        return $server->serve();
 
 
-        $wechat->setMessageHandler(function ($message) use ($user) {
-            switch ($message->MsgType) {
-                case 'event':
-                    return '收到事件消息';
-                    break;
-                case 'text':
-                    return '收到文字消息 From ' . $user->nickname;
-                    break;
-                case 'image':
-                    return '收到图片消息';
-                    break;
-                case 'voice':
-                    return '收到语音消息';
-                    break;
-                case 'video':
-                    return '收到视频消息';
-                    break;
-                case 'location':
-                    return '收到坐标消息';
-                    break;
-                case 'link':
-                    return '收到链接消息';
-                    break;
-                // ... 其它消息
-                default:
-                    return '收到其它消息';
-                    break;
-            }
-            // ...
-        });
-
-        return $wechat->serve();
     }
 }
