@@ -16,7 +16,7 @@ class WechatController extends Controller
     {
 
         $wechatServer = EasyWeChat::server();
-        dd($wechatServer);
-//        return $wechatServer->serve();
+//        dd($wechatServer);
+        return $wechatServer->serve();
     }
 }
