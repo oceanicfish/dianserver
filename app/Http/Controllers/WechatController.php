@@ -15,7 +15,7 @@ class WechatController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function serve()
+    public function serve(Request $request)
     {
         /**
          * EasyWeChat = $app
