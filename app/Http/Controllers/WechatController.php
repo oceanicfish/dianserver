@@ -13,6 +13,10 @@ class WechatController extends Controller
 {
     //
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function serve(Request $request)
     {
         /**
@@ -28,7 +32,7 @@ class WechatController extends Controller
                     return '收到事件消息';
                     break;
                 case 'text':
-                    return '收到文字消息';
+                    return '收到文字消息 From ' . $message->FromUserName;
                     break;
                 case 'image':
                     return '收到图片消息';
