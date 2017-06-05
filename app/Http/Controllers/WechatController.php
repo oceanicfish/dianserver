@@ -16,8 +16,8 @@ class WechatController extends Controller
     public function serve(Request $request)
     {
 
-//        Log::info($request->requestUri);
-        dd($request->path());
+        Log::info($request->all());
+        dd($request->all());
 //        $wechatServer = EasyWeChat::server();
 //        dd($wechatServer);
 //        return $wechatServer->serve();
