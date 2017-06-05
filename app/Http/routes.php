@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+/**
+ * photo uploading and listing routes
+ */
 Route::get('/photos/all', 'PhotoController@all');
 Route::get('/photos/{tags}', 'PhotoController@photoByTags');
 Route::post('/photo/upload', 'PhotoController@upload');
@@ -49,3 +51,8 @@ Route::get('thumbnail/{filename}', function ($filename)
 
     return $response;
 });
+
+/**
+ * wechat apis
+ */
+Route::any('/wechat', 'WechatController@serve');
