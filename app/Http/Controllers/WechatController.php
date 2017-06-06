@@ -6,10 +6,19 @@ use Illuminate\Http\Request;
 use EasyWeChat;
 use Illuminate\Support\Facades\Log;
 use EasyWeChat\Message\Text;
+use EasyWeChat\Server\Guard;
 
 class WechatController extends Controller
 {
     //
+    public $wechatService = null;
+    public $userService = null;
+
+    public function __construct()
+    {
+        $wechatService = EasyWeChat::server();
+        $userService = EasyWeChat::user();
+    }
 
     /**
      * @param Request $request
@@ -21,14 +30,12 @@ class WechatController extends Controller
          * EasyWeChat = $app
          * EasyWeChat::server() = $app->server()
          */
-        $server = EasyWeChat::server();
-        $userService = EasyWeChat::user();
-        $message = $server->getMessage();
+        $message = this::$wechatService->getMessage();
         $openID = $message['FromUserName']; // 用户的 openid
-        $user = $userService->get($openID);
+        $user = this::$userService->get($openID);
         $text = new Text(['content' => '您好！'. $user->nickname]);
         dd($text);
-//        $server->setMessageHandler("您好");
+//        this::$wechatService->setMessageHandler("您好");
 //
 ////        $server->setMessageHandler(function ($message) use ($userService) {
 ////            $openID = $message->FromUserName; // 用户的 openid
@@ -37,8 +44,12 @@ class WechatController extends Controller
 ////            return "您好！".$user->nickname.", 欢迎关注我!";
 ////        });
 //
-//        return $server->serve();
-
+//        return this::$wechatService->serve();
 
     }
+
+//    public function reply($message)
+//    {
+//
+//    }
 }
