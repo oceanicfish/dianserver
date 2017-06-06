@@ -34,7 +34,7 @@ class WechatController extends Controller
 //        $openID = $message['FromUserName']; // 用户的 openid
 //        $user = $this->userService->get($openID);
 //        $text = new Text(['content' => '您好！'. $user->nickname]);
-        $this->wechatService->setMessageHandler($this->reply());
+        $this->wechatService->setMessageHandler($this::reply);
 //
 ////        $server->setMessageHandler(function ($message) use ($userService) {
 //            $openID = $message->FromUserName; // 用户的 openid
@@ -49,6 +49,7 @@ class WechatController extends Controller
 
     public function reply($message)
     {
+        Log::DEBUG("enter reply");
         $openID = $message->FromUserName; // 用户的 openid
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
