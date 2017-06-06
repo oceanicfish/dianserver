@@ -26,7 +26,7 @@ class WechatController extends Controller
         $message = $server->getMessage();
         $openID = $message['FromUserName']; // 用户的 openid
         $user = $userService->get($openID);
-        dd($user);
+        return json_encode($user, JSON_UNESCAPED_UNICODE);
 //        $text = new Text(['content' => '您好！'.$user->nickname]);
 //        $server->setMessageHandler($text);
 //
