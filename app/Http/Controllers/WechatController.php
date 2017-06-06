@@ -16,9 +16,25 @@ class WechatController extends Controller
 
     public function __construct()
     {
-        $wechatService = EasyWeChat::server();
-        $userService = EasyWeChat::user();
+        $this->wechatService = EasyWeChat::server();
+        $this->userService = EasyWeChat::user();
     }
+
+//    /**
+//     * @return null
+//     */
+//    public function getWechatService()
+//    {
+//        return $this->wechatService;
+//    }
+//
+//    /**
+//     * @return null
+//     */
+//    public function getUserService()
+//    {
+//        return $this->userService;
+//    }
 
     /**
      * @param Request $request
@@ -30,9 +46,9 @@ class WechatController extends Controller
          * EasyWeChat = $app
          * EasyWeChat::server() = $app->server()
          */
-        $message = this::$wechatService->getMessage();
+        $message = $this->wechatService->getMessage();
         $openID = $message['FromUserName']; // 用户的 openid
-        $user = this::$userService->get($openID);
+        $user = $this->userService->get($openID);
         $text = new Text(['content' => '您好！'. $user->nickname]);
         dd($text);
 //        this::$wechatService->setMessageHandler("您好");
