@@ -24,9 +24,8 @@ class WechatController extends Controller
         $server = EasyWeChat::server();
         $userService = EasyWeChat::user();
         $message = $server->getMessage();
-
-        dd($message);
-//        $openID = $message->FromUserName; // 用户的 openid
+        $openID = $message->FromUserName; // 用户的 openid
+        dd($openID);
 //        $user = $userService->get($openID);
 //        $text = new Text(['content' => '您好！'.$user->nickname]);
 //        $server->setMessageHandler($text);
