@@ -10,10 +10,19 @@ use EasyWeChat\Server\Guard;
 
 class WechatController extends Controller
 {
-    //
+
+    /**
+     * @var wechat server
+     */
     public $wechatService = null;
+    /**
+     * @var wechat user
+     */
     public $userService = null;
 
+    /**
+     * WechatController constructor.
+     */
     public function __construct()
     {
         $this->wechatService = EasyWeChat::server();
@@ -30,29 +39,21 @@ class WechatController extends Controller
          * EasyWeChat = $app
          * EasyWeChat::server() = $app->server()
          */
-//        $message = $this->wechatService->getMessage();
-//        $openID = $message['FromUserName']; // 用户的 openid
-//        $user = $this->userService->get($openID);
-//        $text = new Text(['content' => '您好！'. $user->nickname]);
         $this->wechatService->setMessageHandler([$this, 'reply']);
-//
-////        $server->setMessageHandler(function ($message) use ($userService) {
-//            $openID = $message->FromUserName; // 用户的 openid
-//            $user = $userService->get($openID);
-//            // $message->MsgType // 消息类型：event, text....
-//            return "您好！".$user->nickname.", 欢迎关注我!";
-////        });
-//
         return $this->wechatService->serve();
 
     }
 
+    /**
+     * @param $message
+     * @return string
+     */
     public function reply($message)
     {
         Log::DEBUG("enter reply");
         $openID = $message->FromUserName; // 用户的 openid
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
-        return "您好！".$user->nickname.", 欢迎关注我!";
+        return "您好！".$user->nickname.", 欢迎关注我们!";
     }
 }
