@@ -54,6 +54,6 @@ class WechatController extends Controller
         $openID = $message->FromUserName; // 用户的 openid
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
-        return "您好！".$user->nickname.", 欢迎关注我们!";
+        return "您好！".$user->nickname.", 欢迎关注测试号!";
     }
 }
