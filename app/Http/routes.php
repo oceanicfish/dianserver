@@ -23,6 +23,8 @@ Route::get('/photos/{tags}', 'PhotoController@photoByTags');
 Route::post('/photo/upload', 'PhotoController@upload');
 Route::get('/photo/autothumb', 'PhotoController@autoThumb');
 
+
+
 /**
  * photo download route
  */
@@ -56,3 +58,16 @@ Route::get('thumbnail/{filename}', function ($filename)
  * wechat apis
  */
 Route::any('/wechat', 'WechatController@serve');
+
+Route::get('/{filename}', function ($filename)
+{
+    $path = public_path('thumbnails') . '/' . $filename;
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
