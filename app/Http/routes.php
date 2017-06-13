@@ -23,6 +23,13 @@ Route::get('/photos/{tags}', 'PhotoController@photoByTags');
 Route::post('/photo/upload', 'PhotoController@upload');
 Route::get('/photo/autothumb', 'PhotoController@autoThumb');
 
+/**
+ * showdate routes
+ */
+Route::get('/show/all', 'ShowController@all');
+Route::get('/show/{tags}', 'ShowController@showByTags');
+Route::post('/show/{tags}', 'ShowController@publish');
+
 
 
 /**
