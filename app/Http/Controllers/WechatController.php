@@ -98,7 +98,8 @@ class WechatController extends Controller
         // $message->MsgType // 消息类型：event, text....
         $returnMsg =", 欢迎关注测试号!";
         if ($message->MsgType == 'event') {
-            switch ($message->Event) {
+            Log::DEBUG("&&&& message event key : " . $message->EventKey);
+            switch ($message->EventKey) {
                 case 'V1001_GOOD':
                     $returnMsg = "感谢您的关注";
                     break;
