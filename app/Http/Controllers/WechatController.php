@@ -40,10 +40,14 @@ class WechatController extends Controller
          * EasyWeChat::server() = $app->server
          */
 
+        $access_token = EasyWeChat::access_token();
+        Log::DEBUG("&& access_token : " . $access_token);
+
         /**
          * handling custom menu
          */
         $menu = EasyWeChat::menu();
+
         $buttons = [
             [
                 "type" => "click",
@@ -72,6 +76,7 @@ class WechatController extends Controller
             ],
         ];
         $menu->add($buttons);
+        $menus = $menu->all();
 
         /**
          * handling message
