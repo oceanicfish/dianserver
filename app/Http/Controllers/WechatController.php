@@ -96,17 +96,18 @@ class WechatController extends Controller
         $openID = $message->FromUserName; // 用户的 openid
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
+        $returnMsg =", 欢迎关注测试号!";
         if ($message->MsgType == 'event') {
             switch ($message->Event) {
                 case 'V1001_GOOD':
-                    return "感谢您的关注";
+                    $returnMsg = "感谢您的关注";
                     break;
                 default:
-                    //do nothing
+                    $returnMsg = "";
                     break;
             }
         }
 
-        return "您好！".$user->nickname.", 欢迎关注测试号!";
+        return "您好！".$user->nickname. $returnMsg;
     }
 }
