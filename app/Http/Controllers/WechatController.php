@@ -40,8 +40,8 @@ class WechatController extends Controller
          * EasyWeChat::server() = $app->server
          */
 
-//        $access_token = EasyWeChat::access_token();
-//        Log::DEBUG("&& access_token : " . $access_token);
+        $access_token = EasyWeChat::access_token();
+        Log::DEBUG("&& access_token : " . $access_token);
 //
 //        /**
 //         * handling custom menu
@@ -108,6 +108,6 @@ class WechatController extends Controller
 //            }
 //        }
 
-        return "您好！".$user->nickname;
+        return "您好！".$user->nickname.$returnMsg;
     }
 }
