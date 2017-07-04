@@ -40,43 +40,43 @@ class WechatController extends Controller
          * EasyWeChat::server() = $app->server
          */
 
-        $access_token = EasyWeChat::access_token();
-        Log::DEBUG("&& access_token : " . $access_token);
-
-        /**
-         * handling custom menu
-         */
-        $menu = EasyWeChat::menu();
-
-        $buttons = [
-            [
-                "type" => "click",
-                "name" => "购票",
-                "key"  => "V1001_TODAY_MUSIC"
-            ],
-            [
-                "name"       => "菜单",
-                "sub_button" => [
-                    [
-                        "type" => "view",
-                        "name" => "搜索",
-                        "url"  => "http://www.soso.com/"
-                    ],
-                    [
-                        "type" => "view",
-                        "name" => "视频",
-                        "url"  => "http://v.qq.com/"
-                    ],
-                    [
-                        "type" => "click",
-                        "name" => "赞一下我们",
-                        "key" => "V1001_GOOD"
-                    ],
-                ],
-            ],
-        ];
-        $menu->add($buttons);
-        $menus = $menu->all();
+//        $access_token = EasyWeChat::access_token();
+//        Log::DEBUG("&& access_token : " . $access_token);
+//
+//        /**
+//         * handling custom menu
+//         */
+//        $menu = EasyWeChat::menu();
+//
+//        $buttons = [
+//            [
+//                "type" => "click",
+//                "name" => "购票",
+//                "key"  => "V1001_TODAY_MUSIC"
+//            ],
+//            [
+//                "name"       => "菜单",
+//                "sub_button" => [
+//                    [
+//                        "type" => "view",
+//                        "name" => "搜索",
+//                        "url"  => "http://www.soso.com/"
+//                    ],
+//                    [
+//                        "type" => "view",
+//                        "name" => "视频",
+//                        "url"  => "http://v.qq.com/"
+//                    ],
+//                    [
+//                        "type" => "click",
+//                        "name" => "赞一下我们",
+//                        "key" => "V1001_GOOD"
+//                    ],
+//                ],
+//            ],
+//        ];
+//        $menu->add($buttons);
+//        $menus = $menu->all();
 
         /**
          * handling message
@@ -108,6 +108,6 @@ class WechatController extends Controller
 //            }
 //        }
 
-        return "您好！".$user->nickname. $returnMsg;
+        return "您好！".$user->nickname;
     }
 }
