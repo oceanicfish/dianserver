@@ -51,7 +51,7 @@ class WechatController extends Controller
         $buttons = [
             [
                 "type" => "click",
-                "name" => "今日歌曲",
+                "name" => "购票",
                 "key"  => "V1001_TODAY_MUSIC"
             ],
             [
