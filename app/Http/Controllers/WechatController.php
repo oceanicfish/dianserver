@@ -75,7 +75,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "6月3日下午-1905",
-                        "key" => "http://gallery.diandianplay.cn/gallery_0603pm.html"
+                        "url" => "http://gallery.diandianplay.cn/gallery_0603pm.html"
                     ],
                     [
                         "type" => "view",
@@ -85,7 +85,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "6月4日下午-1905",
-                        "key" => "http://gallery.diandianplay.cn/gallery_0604pm.html"
+                        "url" => "http://gallery.diandianplay.cn/gallery_0604pm.html"
                     ],
                 ],
             ],
