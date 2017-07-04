@@ -50,27 +50,42 @@ class WechatController extends Controller
 
         $buttons = [
             [
-                "type" => "click",
-                "name" => "购票",
-                "key"  => "V1001_TODAY_MUSIC"
+                "type" => "view",
+                "name" => "进入微店",
+                "url"  => "https://weidian.com/s/1165656977?wfr=c&ifr=shopdetail"
             ],
             [
-                "name"       => "菜单",
+                "type" => "view",
+                "name" => "微店购票",
+                "url"  => "https://weidian.com/i/2125626128?wfr=c&ifr=itemdetail"
+            ],
+            [
+                "name"       => "精彩瞬间",
                 "sub_button" => [
                     [
                         "type" => "view",
-                        "name" => "搜索",
-                        "url"  => "http://www.soso.com/"
+                        "name" => "5月30日-嘉里中心",
+                        "url"  => "http://gallery.diandianplay.cn/gallery_0530.html"
                     ],
                     [
                         "type" => "view",
-                        "name" => "视频",
-                        "url"  => "http://v.qq.com/"
+                        "name" => "6月3日上午-1905",
+                        "url"  => "http://gallery.diandianplay.cn/gallery_0603am.html"
                     ],
                     [
-                        "type" => "click",
-                        "name" => "赞一下我们",
-                        "key" => "V1001_GOOD"
+                        "type" => "view",
+                        "name" => "6月3日下午-1905",
+                        "key" => "http://gallery.diandianplay.cn/gallery_0603pm.html"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "6月4日上午-1905",
+                        "url"  => "http://gallery.diandianplay.cn/gallery_0604am.html"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "6月4日下午-1905",
+                        "key" => "http://gallery.diandianplay.cn/gallery_0604pm.html"
                     ],
                 ],
             ],
@@ -101,7 +116,7 @@ class WechatController extends Controller
             Log::DEBUG("&&&& message event key : " . $message->EventKey);
             switch ($message->EventKey) {
                 case 'V1001_GOOD':
-                    $returnMsg = "感谢您的关注";
+                    $returnMsg = ", 谢谢亲";
                     break;
                 default:
                     $returnMsg = "";
