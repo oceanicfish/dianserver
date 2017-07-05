@@ -126,7 +126,7 @@ class WechatController extends Controller
 //        }
 
         Log::DEBUG("&&&& user : " . $user->nickname . " open id : ". $openID);
-
+        Log::DEBUG("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
         if ($message->MsgType == 'text' && $message->Content == 'paytest') {
             return "http://server.diandianplay.cn/wechat/pay/order";
         }
