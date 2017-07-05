@@ -139,7 +139,7 @@ class WechatController extends Controller
             'detail'           => '测试订单2017070501_detail',
             'out_trade_no'     => '1217752501201407033233368018',
             'total_fee'        => 1, // 单位：分
-            'notify_url'       => 'http://server.diandianplay.cn/pay/done', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+            'notify_url'       => 'http://server.diandianplay.cn/wechat/pay/done', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'openid'           => 'o2jOswqdNjdg5xqcUERzhkywWawU', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
         ];
@@ -150,17 +150,19 @@ class WechatController extends Controller
             $prepayId = $result->prepay_id;
             Log::DEBUG("&&&& paid successfully, prepay id : " . $prepayId);
         }
-        return "";
+        Log::DEBUG("exiting order function");
+        return "prepaid successfully";
     }
 
     public function paid()
     {
+        Log::DEBUG("enter paid function");
         $payment = EasyWeChat::payment();
         $response = $payment->handleNotify(function($notify, $successful){
             Log::DEBUG("&&&& paid [" . $successful->result_code . "], notify_total_fee : " . $notify->total_fee);
             return true; // 或者错误消息
         });
-
+        Log::DEBUG("exiting order function");
         return $response;
     }
 }
