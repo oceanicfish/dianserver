@@ -58,7 +58,7 @@ class WechatController extends Controller
             [
                 "type" => "view",
                 "name" => "微店购票",
-                "url"  => "https://weidian.com/i/2125626128?wfr=c&ifr=itemdetail"
+                "url"  => "http://server.diandianplay.cn/pay/order"
             ],
             [
                 "name"       => "精彩瞬间",
@@ -129,7 +129,7 @@ class WechatController extends Controller
         return "http://server.diandianplay.cn/pay/order";
     }
 
-    public function order()
+    public function order(Request $request)
     {
         Log::DEBUG("enter order function");
         $payment = EasyWeChat::payment();
@@ -153,7 +153,7 @@ class WechatController extends Controller
         return "";
     }
 
-    public function paid()
+    public function paid(Request $request)
     {
         $payment = EasyWeChat::payment();
         $response = $payment->handleNotify(function($notify, $successful){
