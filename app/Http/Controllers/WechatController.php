@@ -110,7 +110,6 @@ class WechatController extends Controller
     {
         Log::DEBUG("enter reply");
         $openID = $message->FromUserName; // 用户的 openid
-        Log::DEBUG("&&&& user open id : ". $openID);
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
         $returnMsg =", 欢迎关注点点剧团公众号!";
@@ -126,7 +125,8 @@ class WechatController extends Controller
 //            }
 //        }
 
-        return "您好！".$user->nickname.$returnMsg;
+        Log::DEBUG("&&&& user : " . $user->nickname . " open id : ". $openID);
+        return "您好！" . $user->nickname . $returnMsg;
 //        return "http://server.diandianplay.cn/wechat/pay/order";
     }
 
@@ -141,7 +141,7 @@ class WechatController extends Controller
             'out_trade_no'     => '1217752501201407033233368018',
             'total_fee'        => 1, // 单位：分
             'notify_url'       => 'http://server.diandianplay.cn/wechat/pay/done', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
-            'openid'           => 'o2jOswqdNjdg5xqcUERzhkywWawU', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            'openid'           => 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
         ];
         $order = new Order($attributes);
