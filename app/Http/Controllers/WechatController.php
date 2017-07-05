@@ -125,8 +125,8 @@ class WechatController extends Controller
 //            }
 //        }
 
-//        return "您好！".$user->nickname.$returnMsg;
-        return "http://server.diandianplay.cn/wechat/pay/order";
+        return "您好！".$user->nickname.$returnMsg;
+//        return "http://server.diandianplay.cn/wechat/pay/order";
     }
 
     public function order()
