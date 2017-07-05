@@ -58,7 +58,7 @@ class WechatController extends Controller
             [
                 "type" => "view",
                 "name" => "微店购票",
-                "url"  => "http://server.diandianplay.cn/wechat/pay/order"
+                "url"  => "https://weidian.com/i/2125626128?wfr=c&ifr=itemdetail"
             ],
             [
                 "name"       => "精彩瞬间",
