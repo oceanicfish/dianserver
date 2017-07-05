@@ -110,9 +110,9 @@ class WechatController extends Controller
     {
         Log::DEBUG("enter reply");
         $openID = $message->FromUserName; // 用户的 openid
+        Log::DEBUG("&&&& user open id : ", $openID);
         $user = $this->userService->get($openID);
         // $message->MsgType // 消息类型：event, text....
-        Log::DEBUG("&&&& user openid : ", $openID);
         $returnMsg =", 欢迎关注点点剧团公众号!";
 //        if ($message->MsgType == 'event') {
 //            Log::DEBUG("&&&& message event key : " . $message->EventKey);
