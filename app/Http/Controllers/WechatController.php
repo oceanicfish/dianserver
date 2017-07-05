@@ -149,6 +149,8 @@ class WechatController extends Controller
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
             Log::DEBUG("&&&& paid successfully, prepay id : " . $prepayId);
+        }else {
+            Log::DEBUG("&&&& paid failed , result return code : " . $result->return_code);
         }
         Log::DEBUG("exiting order function");
         return "prepaid successfully";
