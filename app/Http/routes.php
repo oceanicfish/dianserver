@@ -65,6 +65,8 @@ Route::get('thumbnail/{filename}', function ($filename)
  * wechat apis
  */
 Route::any('/wechat', 'WechatController@serve');
+Route::any('/wechat/pay/order', 'WechatController@order');
+Route::any('/wechat/pay/done', 'WechatController@paid');
 
 Route::get('/{filename}', function ($filename)
 {

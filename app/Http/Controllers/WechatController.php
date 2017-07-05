@@ -7,6 +7,7 @@ use EasyWeChat;
 use Illuminate\Support\Facades\Log;
 use EasyWeChat\Message\Text;
 use EasyWeChat\Server\Guard;
+use EasyWeChat\Payment\Order;
 
 class WechatController extends Controller
 {
@@ -124,6 +125,71 @@ class WechatController extends Controller
 //            }
 //        }
 
-        return "您好！".$user->nickname.$returnMsg;
+//        return "您好！".$user->nickname.$returnMsg;
+        return "http://server.diandianplay.cn/pay/order";
+    }
+
+    public function order()
+    {
+        Log::DEBUG("enter order function");
+        $payment = EasyWeChat::payment();
+        $attributes = [
+            'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
+            'body'             => '测试订单2017070501_body',
+            'detail'           => '测试订单2017070501_detail',
+            'out_trade_no'     => '1217752501201407033233368018',
+            'total_fee'        => 1, // 单位：分
+            'notify_url'       => 'http://server.diandianplay.cn/pay/done', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+            'openid'           => 'o2jOswqdNjdg5xqcUERzhkywWawU', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            // ...
+        ];
+        $order = new Order($attributes);
+
+        $result = $payment->prepare($order);
+        if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+            $prepayId = $result->prepay_id;
+            Log::DEBUG("&&&& paid successfully, prepay id : " . $prepayId);
+        }
+        return "";
+    }
+
+    public function paid()
+    {
+        $payment = EasyWeChat::payment();
+        $response = $payment->handleNotify(function($notify, $successful){
+            Log::DEBUG("&&&& paid [" . $successful->result_code . "], notify_total_fee : " . $notify->total_fee);
+            return true; // 或者错误消息
+        });
+
+        return $response;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
