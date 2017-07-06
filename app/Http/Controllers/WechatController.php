@@ -23,7 +23,7 @@ class WechatController extends Controller
     /**
      * @var wechat openid
      */
-    public static $openID = "";
+    public $openID = null;
 
     /**
      * WechatController constructor.
@@ -146,6 +146,14 @@ class WechatController extends Controller
      */
     public function order($sid)
     {
+
+        $this->wechatService->setMessageHandler(function ($message) {
+            // $message->FromUserName // 用户的 openid
+            // $message->MsgType // 消息类型：event, text....
+            $this->openID = $message->FromUserName;
+        });
+
+
         Log::INFO("enter order function, showid=". $sid . ", openid=" . $this->openID);
 
         $payment = EasyWeChat::payment();
