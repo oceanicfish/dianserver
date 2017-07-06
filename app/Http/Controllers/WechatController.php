@@ -20,6 +20,10 @@ class WechatController extends Controller
      * @var wechat user
      */
     public $userService = null;
+    /**
+     * @var wechat openid
+     */
+    public $openID = null;
 
     /**
      * WechatController constructor.
@@ -42,7 +46,7 @@ class WechatController extends Controller
          */
 
         $access_token = EasyWeChat::access_token();
-        Log::DEBUG("&& access_token : " . $access_token->getToken());
+        Log::INFO("&& access_token : " . $access_token->getToken());
 
         /**
          * handling custom menu
@@ -108,13 +112,13 @@ class WechatController extends Controller
      */
     public function reply($message)
     {
-        Log::DEBUG("enter reply");
-        $openID = $message->FromUserName; // 用户的 openid
-        $user = $this->userService->get($openID);
+        Log::INFO("enter reply");
+        $this->openID = $message->FromUserName; // 用户的 openid
+        $user = $this->userService->get($this->openID);
         // $message->MsgType // 消息类型：event, text....
         $returnMsg =", 欢迎关注点点剧团公众号!";
 //        if ($message->MsgType == 'event') {
-//            Log::DEBUG("&&&& message event key : " . $message->EventKey);
+//            Log::INFO("&&&& message event key : " . $message->EventKey);
 //            switch ($message->EventKey) {
 //                case 'V1001_GOOD':
 //                    $returnMsg = ", 谢谢亲";
@@ -125,8 +129,8 @@ class WechatController extends Controller
 //            }
 //        }
 
-        Log::DEBUG("&&&& user : " . $user->nickname . " open id : ". $openID);
-        Log::DEBUG("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
+        Log::INFO("&&&& user : " . $user->nickname . " open id : ". $this->openID);
+        Log::INFO("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
         if ($message->MsgType == 'text' && $message->Content == 'paytest') {
             return "http://server.diandianplay.cn/ticket/index.html";
         }
@@ -134,21 +138,25 @@ class WechatController extends Controller
         return "您好！" . $user->nickname . $returnMsg;
     }
 
+
     /**
+     * @param $sid
      * @return string
      */
-    public function order()
+    public function order($sid)
     {
-        Log::DEBUG("enter order function");
+        Log::INFO("enter order function, showid=". $sid);
+
         $payment = EasyWeChat::payment();
+
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
-            'body'             => '测试订单2017070501_body',
-            'detail'           => '测试订单2017070501_detail',
-            'out_trade_no'     => '1217752501201407033233368018',
+            'body'             => '测试订单_body',
+            'detail'           => '测试订单_detail',
+            'out_trade_no'     => $this->runTradeNo(),
             'total_fee'        => 1, // 单位：分
             'notify_url'       => 'http://server.diandianplay.cn/wechat/pay/done', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
-            'openid'           => 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            'openid'           => $this->openID, // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
         ];
 
@@ -158,30 +166,44 @@ class WechatController extends Controller
 
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
-            Log::DEBUG("&&&& paid successfully, prepay id : " . $prepayId);
+            Log::INFO("&&&& paid successfully, prepay id : " . $prepayId);
 
             //get config
             $config = $payment->configForJSSDKPayment($prepayId);
-            Log::DEBUG("&&&& prepay config : " . json_encode($config, JSON_UNESCAPED_UNICODE));
+            Log::INFO("&&&& prepay config : " . json_encode($config, JSON_UNESCAPED_UNICODE));
 
             return json_encode($config, JSON_UNESCAPED_UNICODE);
         }
 
-        Log::DEBUG("&&&& paid [" . $result->return_code . "] , result return code : " . $result->return_msg);
+        Log::INFO("&&&& paid [" . $result->return_code . "] , result return code : " . $result->return_msg);
 
         return json_encode($result->return_msg, JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * @return mixed
+     */
     public function paid()
     {
-        Log::DEBUG("enter paid function");
+        Log::INFO("enter paid function");
         $payment = EasyWeChat::payment();
         $response = $payment->handleNotify(function($notify, $successful){
-            Log::DEBUG("&&&& paid [" . json_encode($successful, JSON_UNESCAPED_UNICODE) . "], notify_total_fee : " . json_encode($notify, JSON_UNESCAPED_UNICODE));
+            Log::INFO("&&&& paid [" . json_encode($successful, JSON_UNESCAPED_UNICODE) . "], notify_total_fee : " . json_encode($notify, JSON_UNESCAPED_UNICODE));
             return true; // 或者错误消息
         });
-        Log::DEBUG("exiting order function");
+        Log::INFO("exiting order function");
         return $response;
+    }
+
+    /**
+     * @return string
+     */
+    public function runTradeNo() {
+        $rnd = time() . rand(1000,time());
+        if (strlen($rnd) > 32) {
+            return substr($rnd, 32);
+        }
+        return $rnd;
     }
 }
 
