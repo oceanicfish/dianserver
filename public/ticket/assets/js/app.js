@@ -39,7 +39,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
                         signType : $scope.config.signType,
                         paySign : $scope.config.paySign, // 支付签名
                         success : function (res) {
-                            $scope.prepayid = res;
+                            $scope.prepayid = "paid from WXPay : " + res;
                         // 支付成功后的回调函数
                     }
                 });
