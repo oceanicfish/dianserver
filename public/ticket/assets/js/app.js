@@ -32,18 +32,18 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
                 if(data != "null") {
                     $scope.prepayid = data;
 
-                    // wx.chooseWXPay({
-                    //     appId : 'wx9a742e631d8afe7f',
-                    //     timestamp : $scope.config.timestamp,
-                    //     nonceStr : $scope.config.nonceStr,
-                    //     package : $scope.config.package,
-                    //     signType : $scope.config.signType,
-                    //     paySign : $scope.config.paySign, // 支付签名
-                    //     success : function (res) {
-                    //         $scope.prepayid = "paid from WXPay : " + res;
-                    //     // 支付成功后的回调函数
-                    //     }
-                    // });
+                    wx.chooseWXPay({
+                        appId : $scope.config.appId,
+                        timestamp : $scope.config.timestamp,
+                        nonceStr : $scope.config.nonceStr,
+                        package : $scope.config.package,
+                        signType : $scope.config.signType,
+                        paySign : $scope.config.paySign, // 支付签名
+                        success : function (res) {
+                            $scope.prepayid = "paid from WXPay : " + res;
+                        // 支付成功后的回调函数
+                        }
+                    });
                 }
             });
     }
