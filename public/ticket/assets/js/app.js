@@ -30,19 +30,20 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
         $http.get("http://server.diandianplay.cn/wechat/pay/order")
             .success(function(data) {
                 if(data != "null") {
-                    $scope.config = data;
+                    $scope.prepayid = data;
 
-                    wx.chooseWXPay({
-                        timestamp : $scope.config.timestamp,
-                        nonceStr : $scope.config.nonceStr,
-                        package : $scope.config.package,
-                        signType : $scope.config.signType,
-                        paySign : $scope.config.paySign, // 支付签名
-                        success : function (res) {
-                            $scope.prepayid = "paid from WXPay : " + res;
-                        // 支付成功后的回调函数
-                    }
-                });
+                    // wx.chooseWXPay({
+                    //     appId : 'wx9a742e631d8afe7f',
+                    //     timestamp : $scope.config.timestamp,
+                    //     nonceStr : $scope.config.nonceStr,
+                    //     package : $scope.config.package,
+                    //     signType : $scope.config.signType,
+                    //     paySign : $scope.config.paySign, // 支付签名
+                    //     success : function (res) {
+                    //         $scope.prepayid = "paid from WXPay : " + res;
+                    //     // 支付成功后的回调函数
+                    //     }
+                    // });
                 }
             });
     }
