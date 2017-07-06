@@ -38,7 +38,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
                         package: $scope.config.package,
                         signType: $scope.config.signType,
                         paySign: $scope.config.paySign,
-                        timestamp: String($scope.config.timestamp)
+                        timeStamp: String($scope.config.timestamp)
                     };
 
                     WeixinJSBridge.invoke(
