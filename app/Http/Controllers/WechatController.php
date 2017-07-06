@@ -134,6 +134,9 @@ class WechatController extends Controller
         return "您好！" . $user->nickname . $returnMsg;
     }
 
+    /**
+     * @return string
+     */
     public function order()
     {
         Log::DEBUG("enter order function");
@@ -174,7 +177,7 @@ class WechatController extends Controller
         Log::DEBUG("enter paid function");
         $payment = EasyWeChat::payment();
         $response = $payment->handleNotify(function($notify, $successful){
-            Log::DEBUG("&&&& paid [" . $successful->result_code . "], notify_total_fee : " . $notify->total_fee);
+            Log::DEBUG("&&&& paid [" . json_encode($successful, JSON_UNESCAPED_UNICODE) . "], notify_total_fee : " . json_encode($notify, JSON_UNESCAPED_UNICODE));
             return true; // 或者错误消息
         });
         Log::DEBUG("exiting order function");
