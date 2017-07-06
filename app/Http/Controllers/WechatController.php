@@ -23,7 +23,7 @@ class WechatController extends Controller
     /**
      * @var wechat openid
      */
-    public $openID = "";
+    public static $openID = "";
 
     /**
      * WechatController constructor.
@@ -32,6 +32,7 @@ class WechatController extends Controller
     {
         $this->wechatService = EasyWeChat::server();
         $this->userService = EasyWeChat::user();
+        $this->openID = "";
     }
 
     /**
