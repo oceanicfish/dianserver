@@ -128,7 +128,7 @@ class WechatController extends Controller
         Log::DEBUG("&&&& user : " . $user->nickname . " open id : ". $openID);
         Log::DEBUG("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
         if ($message->MsgType == 'text' && $message->Content == 'paytest') {
-            return "http://server.diandianplay.cn/wechat/pay/order";
+            return "http://server.diandianplay.cn/ticket/index.html";
         }
 
         return "您好！" . $user->nickname . $returnMsg;
@@ -148,17 +148,20 @@ class WechatController extends Controller
             'openid'           => 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
         ];
-        $order = new Order($attributes);
 
+        $order = new Order($attributes);
         $result = $payment->prepare($order);
+
+
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
             Log::DEBUG("&&&& paid successfully, prepay id : " . $prepayId);
-        }else {
-            Log::DEBUG("&&&& paid [" . $result->return_code . "] , result return code : " . $result->return_msg);
+            return json_encode($prepayId, JSON_UNESCAPED_UNICODE);
         }
-        Log::DEBUG("exiting order function");
-        return "prepaid successfully";
+
+        Log::DEBUG("&&&& paid [" . $result->return_code . "] , result return code : " . $result->return_msg);
+
+        return json_encode($result->return_msg, JSON_UNESCAPED_UNICODE);
     }
 
     public function paid()

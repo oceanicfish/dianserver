@@ -8,6 +8,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
     $scope.amount = 1;
     $scope.price = 150;
     $scope.sum = $scope.price;
+    $scope.prepayid = '';
 
     $scope.addOne = function() {
         if ($scope.amount < 20) {
@@ -22,5 +23,17 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
             $scope.sum = $scope.price * $scope.amount;
         }
     }
+
+    $scope.buy = function () {
+
+        $http.get("http://server.diandianplay.cn/wechat/pay/order")
+            .success(function(data) {
+                if(data != "null") {
+                    $scope.prepayid = data;
+                }
+            });
+    }
+
+
 
 }]);
