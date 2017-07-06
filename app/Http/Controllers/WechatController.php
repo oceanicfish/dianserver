@@ -147,11 +147,7 @@ class WechatController extends Controller
     public function order($sid)
     {
 
-        $this->wechatService->setMessageHandler(function ($message) {
-            // $message->FromUserName // 用户的 openid
-            // $message->MsgType // 消息类型：event, text....
-            $this->openID = $message->FromUserName;
-        });
+        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
 
 
         Log::INFO("enter order function, showid=". $sid . ", openid=" . $this->openID);
