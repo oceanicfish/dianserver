@@ -32,9 +32,18 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
                 if(data != "null") {
                     $scope.config = data;
 
+                    $scope.payStr = {
+                        appId: $scope.config.appId,
+                        nonceStr: $scope.config.nonceStr,
+                        package: $scope.config.package,
+                        signType: $scope.config.signType,
+                        paySign: $scope.config.paySign,
+                        timestamp: String($scope.config.timestamp)
+                    };
+
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest',
-                        $scope.config,
+                        $scope.payStr,
                         function(res){
                             if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                                 alert("paid successfully");
