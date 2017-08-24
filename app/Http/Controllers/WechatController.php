@@ -70,8 +70,8 @@ class WechatController extends Controller
                 "sub_button" => [
                     [
                         "type" => "view",
-                        "name" => "5月30日-嘉里中心",
-                        "url"  => "http://gallery.diandianplay.cn/gallery_0530.html"
+                        "name" => "8月5日飞翔吧潘达",
+                        "url"  => "http://gallery.diandianplay.cn/gallery_0805.html"
                     ],
                     [
                         "type" => "view",
