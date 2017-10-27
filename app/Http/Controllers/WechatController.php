@@ -165,6 +165,7 @@ class WechatController extends Controller
             // ...
         ];
 
+        //git test
         $order = new Order($attributes);
         $result = $payment->prepare($order);
 
