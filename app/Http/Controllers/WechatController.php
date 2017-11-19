@@ -134,7 +134,7 @@ class WechatController extends Controller
         Log::INFO("&&&& user : " . $user->nickname . " open id : ". $this->openID);
         Log::INFO("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
         if ($message->MsgType == 'text' && $message->Content == 'paytest') {
-            return "http://server.diandianplay.cn/ticket/index.html";
+            return "http://server.diandianplay.cn/ticket/index.php?openID=" . $this->openID;
         }
 
         return "您好！" . $user->nickname . $returnMsg;
@@ -142,14 +142,15 @@ class WechatController extends Controller
 
 
     /**
-     * @param $sid
+     * @param
      * @return string
      */
-    public function order($sid)
+    public function order()
     {
 
 //        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
-        $this->openID = session('myOpenID');
+        $this->openID = $_GET['openID'];
+        $sid = $_GET['sid'];
 
         Log::INFO("&&&& enter order function, showid=". $sid . ", openid=" . $this->openID);
 
