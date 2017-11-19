@@ -147,10 +147,10 @@ class WechatController extends Controller
     public function order($sid)
     {
 
-        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
+//        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
 
 
-        Log::INFO("enter order function, showid=". $sid . ", openid=" . $this->openID);
+        Log::INFO("&&&& enter order function, showid=". $sid . ", openid=" . $this->openID);
 
         $payment = EasyWeChat::payment();
 
