@@ -11,6 +11,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
+    $scope.openID = '';
 
     /**
      * plus symbol clicked
@@ -37,7 +38,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
      */
     $scope.buy = function () {
 
-        $http.get("http://server.diandianplay.cn/wechat/pay/order/" + $scope.sid)
+        $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.openID)
             .success(function(data) {
                 if(data != "null") {
                     $scope.config = data;
