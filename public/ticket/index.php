@@ -65,7 +65,7 @@
                     </ul>
                     <div class="plan-price-div text-center">
                         <div class="choose-plan-div">
-                            <input ng-model="openID" value="<?php echo $_GET['openID']?>" hidden>
+                            <input name="hidden-openid" ng-model="myOpenID" value="<?php echo $_GET['openID']?>">
                             <label><?php echo $_GET['openID']?></label>
                             <label class="plan-btn light" ng-click="buy()">
                                 确认支付
