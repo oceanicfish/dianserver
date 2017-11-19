@@ -65,6 +65,7 @@
                     </ul>
                     <div class="plan-price-div text-center">
                         <div class="choose-plan-div">
+<!--                            test-->
                             <label><?php echo $_GET['openID']?></label>
                             <input type="text" name="hidden-openid" ng-model="myOpenID" ng-init="myOpenID='<?php echo $_GET['openID']?>'" value="<?php echo $_GET['openID']?>">
                             <label>{{myOpenID}}</label>
