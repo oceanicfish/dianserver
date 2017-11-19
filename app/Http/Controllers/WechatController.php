@@ -149,6 +149,7 @@ class WechatController extends Controller
     {
 
 //        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
+        Log::INFO("&&&& get openid from request get method, openid : " . $_GET['openID']);
         $this->openID = $_GET['openID'];
         $sid = $_GET['sid'];
 
