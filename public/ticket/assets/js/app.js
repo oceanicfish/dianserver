@@ -11,7 +11,7 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
-    $scope.myOpenID = angular.getElementById('myOpenID');
+    $scope.myOpenID = '';
 
     /**
      * plus symbol clicked
