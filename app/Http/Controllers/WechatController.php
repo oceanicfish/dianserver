@@ -130,6 +130,7 @@ class WechatController extends Controller
 //            }
 //        }
 
+        session(['myOpenID' => $this->openID]);
         Log::INFO("&&&& user : " . $user->nickname . " open id : ". $this->openID);
         Log::INFO("&&&& msgtype : " . $message->MsgType . " content: ". $message->Content);
         if ($message->MsgType == 'text' && $message->Content == 'paytest') {
@@ -148,7 +149,7 @@ class WechatController extends Controller
     {
 
 //        $this->openID = 'o_qPfwQW8Oi_nDpp9uxV-bEnUNJY';
-
+        $this->openID = session('myOpenID');
 
         Log::INFO("&&&& enter order function, showid=". $sid . ", openid=" . $this->openID);
 
