@@ -1,0 +1,65 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../images/panda1.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 35px;
+    padding-bottom: 80px;
+}
+
+.bg div.container {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.ticket {
+    border: 1px solid #9933CC;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.text-area {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px #333333;
+    padding-top: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div.buy {
+    margin-top: 25px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 60px;
+    background-color: #FF8800;
+    font-size: 25px;
+    padding-top: 12px;
+}
+
+div.buy a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.showname {
+    margin-bottom: 15px;
+}

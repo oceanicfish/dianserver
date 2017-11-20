@@ -78,7 +78,7 @@
             </a>
         </div>
     </div>
-
+    <input type="hidden" value="<?php echo $_GET['amount']?>">
 </div>
 
 <script src="assets/js/jquery.min.js"></script>

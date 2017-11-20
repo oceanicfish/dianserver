@@ -3,7 +3,7 @@
  */
 var app = angular.module('ticketApp', []);
 
-app.controller('ticketController', ['$http', '$scope', function($http, $scope){
+app.controller('ticketController', ['$http', '$scope', '$location', function($http, $scope, $location){
 
     $scope.amount = 1;
     $scope.price = 150;
@@ -31,6 +31,11 @@ app.controller('ticketController', ['$http', '$scope', function($http, $scope){
             $scope.amount = $scope.amount - 1;
             $scope.sum = $scope.price * $scope.amount;
         }
+    }
+
+    $scope.goSeatChart = function () {
+        console.log('get in goSeatChart');
+        $location.path('../seat-area.php?amount=' + $scope.amount);
     }
 
     /**
