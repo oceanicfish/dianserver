@@ -35,7 +35,7 @@ app.controller('ticketController', ['$http', '$scope', '$location', function($ht
 
     $scope.goSeatChart = function () {
         console.log('get in goSeatChart');
-        $location.path('../seat-area.php?amount=' + $scope.amount);
+        $window.location.assign('http://server.diandianplay.cn/ticket/seat-area.php?amount=' + $scope.amount);
     }
 
     /**
