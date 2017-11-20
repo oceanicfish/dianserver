@@ -1,0 +1,77 @@
+div.row.stage-area {
+	background-color: grey;
+	color: white;
+	border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	text-align: center;
+}
+
+div.area {
+	height: 120px;
+	margin-top: 25px;
+	border-radius: 3px;
+	border: 1px dotted;
+}
+
+div.area.a {
+	background-color: #d9534f;
+	color: #ffffff;
+}
+
+div.area.a:active {
+	border-color: #d9534f;
+	background-color: #ffffff;
+	color:#d9534f;
+}
+
+div.area.b {
+	background-color: #5bc0de;
+	color: #ffffff;
+}
+
+div.area.b:active {
+	border-color: #5bc0de;
+	background-color: #ffffff;
+	color:#5bc0de;
+}
+
+div.area.c {
+	background-color: #5cb85c;
+	color: #ffffff;
+}
+
+div.area.c:active {
+	border-color: #5cb85c;
+	background-color: #ffffff;
+	color:#5cb85c;
+}
+
+div.area.d {
+	background-color: #428bca;
+	color: #ffffff;
+}
+
+div.area.d:active {
+	border-color: #428bca;
+	background-color: #ffffff;
+	color:#428bca;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+div.col-xs-6.area-a {
+	padding-left: 25px;
+	padding-right: 5px;
+}
+
+div.col-xs-6.area-b {
+	padding-left: 5px;
+	padding-right: 25px;
+}
+
+div.col-xs-4.area-d {
+	padding-left: 5px;
+	padding-right: 5px;
+}
