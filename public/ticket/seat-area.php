@@ -26,15 +26,15 @@
     <div class="row stage-area"><h2>舞台</h2></div>
     <div class="row">
         <div class="col-xs-6 area-a">
-            <a href="sear-chart-a.html">
-                <div class="area a text-center">
+<!--            <a href="seat-chart-a.php">-->
+                <div class="area a text-center" ng-click="goSeatChartA()">
                     <h3>A区</h3>
                     <h5>票价：150元</h5>
                 </div>
-            </a>
+<!--            </a>-->
         </div>
         <div class="col-xs-6 area-b">
-            <a href="sear-chart-b.html">
+            <a href="seat-chart-b.html">
                 <div class="area b text-center">
                     <h3>B区</h3>
                     <h5>票价：150元</h5>
@@ -44,7 +44,7 @@
     </div>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <a href="sear-chart-c.html">
+            <a href="seat-chart-c.html">
                 <div class="area c text-center">
                     <h3>C区</h3>
                     <h5>票价：150元</h5>
@@ -54,7 +54,7 @@
     </div>
     <div class="row">
         <div class="col-xs-4 area-d">
-            <a href="sear-chart-d-1.html">
+            <a href="seat-chart-d-1.html">
                 <div class="area d text-center">
                     <h4>D1区</h4>
                     <h6>票价：150元</h6>
@@ -62,7 +62,7 @@
             </a>
         </div>
         <div class="col-xs-4 area-d">
-            <a href="sear-chart-d-2.html">
+            <a href="seat-chart-d-2.html">
                 <div class="area d text-center">
                     <h4>D2区</h4>
                     <h6>票价：150元</h6>
@@ -70,7 +70,7 @@
             </a>
         </div>
         <div class="col-xs-4 area-d">
-            <a href="sear-chart-d-3.html">
+            <a href="seat-chart-d-3.html">
                 <div class="area d text-center">
                     <h4>D3区</h4>
                     <h6>票价：150元</h6>
@@ -78,7 +78,8 @@
             </a>
         </div>
     </div>
-    <input type="hidden" value="<?php echo $_GET['amount']?>">
+    <div class="row text-center bg-info buy"><a>返回购票页</a></div>
+    <input type="text" ng-model="amount" ng-init="amount='<?php echo $_GET['amount']?>'" value="<?php echo $_GET['amount']?>">
 </div>
 
 <script src="assets/js/jquery.min.js"></script>

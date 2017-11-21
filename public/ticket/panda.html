@@ -23,11 +23,13 @@
                 &nbsp;&nbsp; {{amount}} 张 &nbsp;&nbsp;
                 <label class="btn btn-small btn-primary" ng-click="addOne()"><i class="fa fa-plus"></i> </label>
             </div>
-            <p class="text-danger">您需要先选座才能计算总价</p>
+            <div class="container text-center">
+                <label class="btn btn-small btn-success" ng-click="goSeatChart()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始选座&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            </div>
         </div>
 
         <div class="buy text-center">
-            <span ng-click="goSeatChart()">选座购票</span>
+            <span>确认购票</span>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
  */
 var app = angular.module('ticketApp', []);
 
-app.controller('ticketController', ['$http', '$scope', '$location', function($http, $scope, $location){
+app.controller('ticketController', ['$http', '$scope', '$location', "$window", function($http, $scope, $location, $window){
 
     $scope.amount = 1;
     $scope.price = 150;
@@ -11,7 +11,7 @@ app.controller('ticketController', ['$http', '$scope', '$location', function($ht
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
-    $scope.myOpenID = '';
+    $scope.myOpenID = 'myopenid';
 
     /**
      * plus symbol clicked
@@ -35,8 +35,16 @@ app.controller('ticketController', ['$http', '$scope', '$location', function($ht
 
     $scope.goSeatChart = function () {
         console.log('get in goSeatChart');
-        $window.location.assign('http://server.diandianplay.cn/ticket/seat-area.php?amount=' + $scope.amount);
+        $window.location.href = "http://localhost:8000/ticket/seat-area.php?amount=" + $scope.amount + "&openid=" + $scope.myOpenID;
+
     }
+
+    $scope.goSeatChartA = function () {
+        console.log('get in goSeatChart');
+        $window.location.href = "http://localhost:8000/ticket/seat-chart-a.html";
+
+    }
+
 
     /**
      * buy button clicked

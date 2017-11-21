@@ -75,3 +75,20 @@ div.col-xs-4.area-d {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
+div.buy {
+	margin-top: 25px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 60px;
+	background-color: #007E33;
+	font-size: 25px;
+	padding-top: 12px;
+}
+
+div.buy a {
+	color: #ffffff;
+	text-decoration: none;
+}
