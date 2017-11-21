@@ -17,7 +17,7 @@ body, html {
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 35px;
-    padding-bottom: 80px;
+    padding-bottom: 80pt;
 }
 
 .bg div.container {
@@ -49,7 +49,7 @@ div.buy {
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 60px;
+    height: 60pt;
     background-color: #FF8800;
     font-size: 25px;
     padding-top: 12px;
