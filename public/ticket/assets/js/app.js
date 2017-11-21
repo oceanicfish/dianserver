@@ -1,25 +1,34 @@
 /**
  * Created by yang on 26/04/2017.
  */
-var app = angular.module('ticketApp', []);
+var app = angular.module('ticketApp', ['ngCookies']);
 
-app.controller('ticketController', ['$http', '$scope', '$location', "$window", function($http, $scope, $location, $window){
+app.controller('ticketController', ['$http', '$scope','$cookies','$cookieStore', function($http, $scope, $cookies, $cookieStore){
 
-    $scope.amount = 1;
-    $scope.price = 150;
-    $scope.sum = $scope.price;
+    $scope.ticket = 1;
+    $scope.kidTicket = $scope.ticket;
+    $scope.adultTicket = $scope.ticket;
+    $scope.kidTicketPrice = 0;
+    $scope.adultTicketPrice = 0;
+    $scope.sum = $scope.kidTicketPrice + $scope.adultTicketPrice;
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
     $scope.myOpenID = '';
+    $scope.seatText = '开始选座';
+    $scope.kidSeats = [];
+    $scope.adultSeats = [];
 
     /**
      * plus symbol clicked
      */
     $scope.addOne = function() {
-        if ($scope.amount < 20) {
-            $scope.amount = $scope.amount + 1;
-            $scope.sum = $scope.price * $scope.amount;
+        if ($scope.ticket < 20) {
+            $scope.ticket = $scope.ticket + 1;
+            $scope.kidTicket = $scope.ticket;
+            $scope.adultTicket = $scope.ticket;
+            $cookieStore.put('ticket', $scope.ticket);
+            // $scope.sum = $scope.kidTicketPrice * $scope.kidTicket + $scope.adultTicketPrice * $scope.adultTicket;
         }
     }
 
@@ -27,30 +36,13 @@ app.controller('ticketController', ['$http', '$scope', '$location', "$window", f
      * minus symbol clicked
      */
     $scope.deleteOne = function() {
-        if ($scope.amount > 1) {
-            $scope.amount = $scope.amount - 1;
-            $scope.sum = $scope.price * $scope.amount;
+        if ($scope.ticket > 1) {
+            $scope.ticket = $scope.ticket - 1;
+            $scope.kidTicket = $scope.ticket;
+            $scope.adultTicket = $scope.ticket;
+            $cookieStore.put('ticket', $scope.ticket);
         }
     }
-
-    /**
-     * redirect to seat-area.html
-     */
-    $scope.goSeatChart = function () {
-        console.log('get in goSeatChart');
-        $window.location.href = "http://localhost:8000/ticket/seat-area.html";
-
-    }
-
-    /**
-     * reddirect to seat-chart-a.html
-     */
-    $scope.goSeatChartA = function () {
-        console.log('get in goSeatChart');
-        $window.location.href = "http://localhost:8000/ticket/seat-chart-a.html";
-
-    }
-
 
     /**
      * buy button clicked

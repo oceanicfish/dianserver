@@ -25,6 +25,10 @@
 </div>
 
 <script src="assets/js/jQuery-2.1.4.min.js"></script>
+
+<script src="assets/js/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/angular-cookies.min.js"></script>
+
 <script src="assets/js/jquery.seat-charts.js"></script>
 
 <script>

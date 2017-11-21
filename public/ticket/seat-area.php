@@ -1,4 +1,4 @@
-<html ng-app="ticketApp">
+<html ng-app="seatAreaApp">
 <head>
     <meta charset="UTF-8">
 
@@ -18,15 +18,16 @@
 
 </head>
 
-<body ng-controller="ticketController">
+<body ng-controller="seatAreaController">
 
 <!-- Navigation
     ================================================== -->
 <div class="container">
+<!--    <input type="hidden" ng-model="ticket" ng-init="setTicketAmount(--><?php //echo $_GET['ticket']?><!--)">-->
     <div class="row stage-area"><h2>舞台</h2></div>
     <div class="row">
         <div class="col-xs-6 area-a">
-            <a href="seat-chart-a.php">
+            <a href="seat-chart-a.php?kidTicket={{kidTicket}}">
                 <div class="area a text-center">
                     <h3>A区</h3>
                     <h6>票价：150元/座</h6>
@@ -35,7 +36,7 @@
             </a>
         </div>
         <div class="col-xs-6 area-b">
-            <a href="seat-chart-b.php">
+            <a href="seat-chart-b.php?kidTicket={{kidTicket}}">
                 <div class="area b text-center">
                     <h3>B区</h3>
                     <h6>票价：150元/座</h6>
@@ -86,9 +87,9 @@
     </div>
 </div>
 <div class="container text-center" style="padding-top: 5px;">
-    <p>您可以选<span style="font-size: 20px;">1</span>个
+    <p>您可以选<span style="font-size: 20px;">{{kidTicket}}</span>个
         <span class="text-danger">儿童座位</span>和
-        <span style="font-size: 20px;">1</span>个
+        <span style="font-size: 20px;">{{adultTicket}}</span>个
         <span class="text-primary">家长座位</span> </p>
 </div>
 
@@ -100,8 +101,9 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 
 <script src="assets/js/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/angular-cookies.min.js"></script>
 <script type="text/javascript" src="assets/js/qrcode.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="assets/js/seat-area-app.js"></script>
 
 </body>
 

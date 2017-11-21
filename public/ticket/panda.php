@@ -23,11 +23,11 @@
             <p>(包含一张大人票和一张儿童票)</p>
             <div class="container text-center">
                 <label class="btn btn-small btn-warning" ng-click="deleteOne()"><i class="fa fa-minus"></i> </label>
-                &nbsp;&nbsp; {{amount}} 张 &nbsp;&nbsp;
+                &nbsp;&nbsp; {{ticket}} 套 &nbsp;&nbsp;
                 <label class="btn btn-small btn-primary" ng-click="addOne()"><i class="fa fa-plus"></i> </label>
             </div>
             <div class="container text-center">
-                <a class="btn btn-small btn-success" href="seat-area.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始选座&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a class="btn btn-small btn-success" href="seat-area.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{seatText}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
             </div>
         </div>
 
@@ -41,8 +41,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-    <script src="assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/qrcode.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
 </body>
 </html>
