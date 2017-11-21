@@ -11,7 +11,7 @@ app.controller('ticketController', ['$http', '$scope', '$location', "$window", f
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
-    $scope.myOpenID = 'myopenid';
+    $scope.myOpenID = '';
 
     /**
      * plus symbol clicked
@@ -33,12 +33,18 @@ app.controller('ticketController', ['$http', '$scope', '$location', "$window", f
         }
     }
 
+    /**
+     * redirect to seat-area.html
+     */
     $scope.goSeatChart = function () {
         console.log('get in goSeatChart');
-        $window.location.href = "http://localhost:8000/ticket/seat-area.php?amount=" + $scope.amount + "&openid=" + $scope.myOpenID;
+        $window.location.href = "http://localhost:8000/ticket/seat-area.html";
 
     }
 
+    /**
+     * reddirect to seat-chart-a.html
+     */
     $scope.goSeatChartA = function () {
         console.log('get in goSeatChart');
         $window.location.href = "http://localhost:8000/ticket/seat-chart-a.html";

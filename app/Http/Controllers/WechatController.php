@@ -137,6 +137,10 @@ class WechatController extends Controller
             return "http://server.diandianplay.cn/ticket/index.php?openID=" . $this->openID;
         }
 
+        if ($message->MsgType == 'text' && $message->Content == 'pandatest') {
+            return "http://server.diandianplay.cn/ticket/panda.php?openID=" . $this->openID;
+        }
+
         return "您好！" . $user->nickname . $returnMsg;
     }
 
