@@ -21,7 +21,7 @@
     <div class="row text-center">
         <div id="seat-map"></div>
     </div>
-    <div class="row text-center bg-info buy"><a href="seat-area.html">选完了</a></div>
+    <div class="row text-center bg-info buy"><a href="seat-area.php">选完了</a></div>
 </div>
 
 <script src="assets/js/jQuery-2.1.4.min.js"></script>
