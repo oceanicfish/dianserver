@@ -26,61 +26,73 @@
     <div class="row stage-area"><h2>舞台</h2></div>
     <div class="row">
         <div class="col-xs-6 area-a">
-<!--            <a href="seat-chart-a.php">-->
-                <div class="area a text-center" ng-click="goSeatChartA()">
+            <a href="seat-chart-a.php">
+                <div class="area a text-center">
                     <h3>A区</h3>
-                    <h5>票价：150元</h5>
+                    <h6>票价：150元/座</h6>
+                    <p>仅限儿童</p>
                 </div>
-<!--            </a>-->
+            </a>
         </div>
         <div class="col-xs-6 area-b">
-            <a href="seat-chart-b.html">
+            <a href="seat-chart-b.php">
                 <div class="area b text-center">
                     <h3>B区</h3>
-                    <h5>票价：150元</h5>
+                    <h6>票价：150元/座</h6>
+                    <p>仅限儿童</p>
                 </div>
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <a href="seat-chart-c.html">
+            <a href="seat-chart-c.php">
                 <div class="area c text-center">
                     <h3>C区</h3>
-                    <h5>票价：150元</h5>
+                    <h5>票价：100元/座</h5>
+                    <p>家长可以陪伴孩子坐在此区域</p>
                 </div>
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-4 area-d">
-            <a href="seat-chart-d-1.html">
+            <a href="seat-chart-d1.php">
                 <div class="area d text-center">
                     <h4>D1区</h4>
-                    <h6>票价：150元</h6>
+                    <h6>票价：50元</h6>
+                    <p>家长区</p>
                 </div>
             </a>
         </div>
         <div class="col-xs-4 area-d">
-            <a href="seat-chart-d-2.html">
+            <a href="seat-chart-d2.php">
                 <div class="area d text-center">
                     <h4>D2区</h4>
-                    <h6>票价：150元</h6>
+                    <h6>票价：50元</h6>
+                    <p>家长区</p>
                 </div>
             </a>
         </div>
         <div class="col-xs-4 area-d">
-            <a href="seat-chart-d-3.html">
+            <a href="seat-chart-d3.php">
                 <div class="area d text-center">
                     <h4>D3区</h4>
-                    <h6>票价：150元</h6>
+                    <h6>票价：50元</h6>
+                    <p>家长区</p>
                 </div>
             </a>
         </div>
     </div>
-    <div class="row text-center bg-info buy"><a>返回购票页</a></div>
-    <input type="text" ng-model="amount" ng-init="amount='<?php echo $_GET['amount']?>'" value="<?php echo $_GET['amount']?>">
 </div>
+<div class="container text-center" style="padding-top: 5px;">
+    <p>您可以选<span style="font-size: 20px;">1</span>个
+        <span class="text-danger">儿童座位</span>和
+        <span style="font-size: 20px;">1</span>个
+        <span class="text-primary">家长座位</span> </p>
+</div>
+
+<div class="row text-center bg-info buy"><a href="panda.php">返回购票页</a></div>
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

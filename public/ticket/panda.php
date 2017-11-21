@@ -27,7 +27,7 @@
                 <label class="btn btn-small btn-primary" ng-click="addOne()"><i class="fa fa-plus"></i> </label>
             </div>
             <div class="container text-center">
-                <a class="btn btn-small btn-success" href="seat-area.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始选座&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a class="btn btn-small btn-success" href="seat-area.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始选座&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
             </div>
         </div>
 
