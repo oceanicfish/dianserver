@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 </head>
 <body ng-controller="ticketController">
-
+<input type="hidden" name="hidden-openid" ng-model="myOpenID" ng-init="setOpenID('<?php echo $_GET['openID']?>')" value="<?php echo $_GET['openID']?>">
     <div class="bg">
 
         <div class="text-area text-center">
@@ -27,13 +27,14 @@
                 <label class="btn btn-small btn-primary" ng-click="addOne()"><i class="fa fa-plus"></i> </label>
             </div>
             <div class="container text-center">
-                <a class="btn btn-small btn-success" href="seat-area.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{seatText}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a class="btn btn-small btn-success" href="seat-area.php" style="padding: 5px 55px;">{{seatText}}</a>
             </div>
+
+            <div class="container text-center">{{selectedSeatsMessage}}</div>
         </div>
 
         <div class="buy text-center">
-            <input type="hidden" name="hidden-openid" ng-model="myOpenID" ng-init="myOpenID='<?php echo $_GET['openID']?>'" value="<?php echo $_GET['openID']?>">
-            <span>确认购票</span>
+            <span ng-click="buy()">确认购票</span>
         </div>
     </div>
 

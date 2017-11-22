@@ -27,7 +27,7 @@
     <div class="row stage-area"><h2>舞台</h2></div>
     <div class="row">
         <div class="col-xs-6 area-a">
-            <a href="seat-chart-a.php?kidTicket={{kidTicket}}">
+            <a href="seat-chart-a.php">
                 <div class="area a text-center">
                     <h3>A区</h3>
                     <h6>票价：150元/座</h6>
@@ -36,7 +36,7 @@
             </a>
         </div>
         <div class="col-xs-6 area-b">
-            <a href="seat-chart-b.php?kidTicket={{kidTicket}}">
+            <a href="seat-chart-b.php">
                 <div class="area b text-center">
                     <h3>B区</h3>
                     <h6>票价：150元/座</h6>
@@ -87,9 +87,9 @@
     </div>
 </div>
 <div class="container text-center" style="padding-top: 5px;">
-    <p>您可以选<span style="font-size: 20px;">{{kidTicket}}</span>个
+    <p>您可以选<span style="font-size: 20px;">{{availableKidSeatsAmount}}</span>个
         <span class="text-danger">儿童座位</span>和
-        <span style="font-size: 20px;">{{adultTicket}}</span>个
+        <span style="font-size: 20px;">{{availableAdultSeatsAmount}}</span>个
         <span class="text-primary">家长座位</span> </p>
 </div>
 

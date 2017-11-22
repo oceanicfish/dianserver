@@ -62,8 +62,8 @@ class WechatController extends Controller
             ],
             [
                 "type" => "view",
-                "name" => "微店购票",
-                "url"  => "https://weidian.com/i/2125626128?wfr=c&ifr=itemdetail"
+                "name" => "购票",
+                "url"  => "http://jx.pplong.cn/ticketbiz/wechat?userid=fba017f1603f43529d557a41146dedae"
             ],
             [
                 "name"       => "精彩瞬间",

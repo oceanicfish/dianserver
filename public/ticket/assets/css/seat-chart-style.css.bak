@@ -1,0 +1,154 @@
+/**
+ * Created by yang on 17/11/2017.
+ */
+body {
+    font-family: 'Lato', sans-serif;
+}
+a {
+    color: #b71a4c;
+}
+.front-indicator {
+    width: 92%;
+    margin: 30px 50px 15px 32px;
+    /*background-color: ;*/
+    color: darkred;
+    text-align: center;
+    padding: 5px 5px;
+    border: 1px solid darkred;
+    border-radius: 5px;
+}
+.area-a {
+    width: 92%;
+    margin: 30px 50px 15px 32px;
+    /*background-color: ;*/
+    color: darkred;
+    text-align: center;
+    padding: 5px 5px;
+    border: 1px solid darkred;
+    border-radius: 5px;
+}
+.wrapper {
+    width: 100%;
+    text-align: center;
+}
+.container {
+    margin: auto;
+    /*width: 500px;*/
+    /*text-align: center;*/
+    align-content: center;
+}
+.booking-details {
+    float: left;
+    text-align: left;
+    margin-left: 35px;
+    font-size: 12px;
+    position: relative;
+    height: 401px;
+}
+.booking-details h2 {
+    margin: 25px 0 20px 0;
+    font-size: 17px;
+}
+.booking-details h3 {
+    margin: 5px 5px 0 0;
+    font-size: 14px;
+}
+div.seatCharts-cell {
+    color: #182C4E;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+
+}
+div.seatCharts-seat {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+div.seatCharts-row {
+    height: 50px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+div.seatCharts-seat.available {
+    background-color: #B9DEA0;
+
+}
+div.seatCharts-seat.available.first-class {
+    /* 	background: url(vip.png); */
+    background-color: #3a78c3;
+}
+div.seatCharts-seat.available.a-class {
+    /* 	background: url(vip.png); */
+    background-color: tomato;
+    /*color: darkgray;*/
+}
+div.seatCharts-seat.available.b-class {
+    /* 	background: url(vip.png); */
+    background-color: rebeccapurple;
+}
+div.seatCharts-seat.available.c-class {
+    /* 	background: url(vip.png); */
+    background-color: limegreen;
+}
+div.seatCharts-seat.available.d-class {
+    /* 	background: url(vip.png); */
+    background-color: deepskyblue;
+}
+div.seatCharts-seat.focused {
+    background-color: #333333;
+    color: white;
+}
+div.seatCharts-seat.selected {
+    background-color: #aaaaaa;
+}
+div.seatCharts-seat.unavailable {
+    background-color: #472B34;
+}
+div.seatCharts-container {
+    /*border: 1px dotted #adadad;*/
+    width: 240px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    margin: auto;
+}
+div.seatCharts-legend {
+    padding-left: 0px;
+    position: absolute;
+    bottom: 16px;
+}
+ul.seatCharts-legendList {
+    padding-left: 0px;
+}
+span.seatCharts-legendDescription {
+    margin-left: 5px;
+    line-height: 30px;
+}
+.checkout-button {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+}
+#selected-seats {
+    max-height: 90px;
+    overflow-y: scroll;
+    overflow-x: none;
+    width: 170px;
+}
+
+div.buy {
+    margin-top: 25px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 60px;
+    background-color: #007E33;
+    font-size: 25px;
+    padding-top: 12px;
+}
+
+div.buy a {
+    color: #ffffff;
+    text-decoration: none;
+}

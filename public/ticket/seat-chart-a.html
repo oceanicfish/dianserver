@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/responsive.css"/>
     <link rel="stylesheet" href="assets/css/seat-area.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.seat-charts.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/seat-chart-style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/seat-chart-style.css.bak">
 </head>
 
 <body>

@@ -5,22 +5,16 @@ var app = angular.module('seatAreaApp', ['ngCookies']);
 
 app.controller('seatAreaController', ['$http', '$scope', '$cookies','$cookieStore', function($http, $scope,$cookies, $cookieStore){
 
-    $scope.ticket = $cookieStore.get('ticket');
-    if(!$scope.ticket)
-        $scope.ticket = 1;
+    console.log("seat-area:" + $cookies);
 
-    $scope.kidTicket = $scope.ticket;
-    $scope.adultTicket = $scope.ticket;
-    $scope.kidTicketPrice = 0;
-    $scope.adultTicketPrice = 0;
-    $scope.sum = $scope.kidTicketPrice + $scope.adultTicketPrice;
-    $scope.prepayid = '';
-    $scope.config = '';
-    $scope.sid = 1;
-    $scope.myOpenID = '';
-    $scope.seatText = '开始选座';
-    $scope.kidSeats = [];
-    $scope.adultSeats = [];
+    $scope.ticket = (!$cookies.getObject('ticket')) ? 1 : $cookies.getObject('ticket');
+
+    console.log($cookies.getObject('selectedKidSeats'));
+
+    $scope.selectedKidSeats = (!$cookies.getObject('selectedKidSeats')) ? [] : $cookies.getObject('selectedKidSeats');
+    $scope.selectedAdultSeats = (!$cookies.getObject('selectedAdultSeats')) ? [] : $cookies.getObject('selectedAdultSeats');
+    $scope.availableKidSeatsAmount =  $scope.ticket - $scope.selectedKidSeats.length;
+    $scope.availableAdultSeatsAmount = $scope.ticket - $scope.selectedAdultSeats.length;
 
     console.log($scope.ticket);
 }]);
