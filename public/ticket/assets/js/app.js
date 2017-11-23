@@ -114,7 +114,7 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         }).then(function (success){
             alert(success);
             if(success != "null") {
-                $scope.config = success;
+                $scope.config = success.data;
 
                 console.log($scope.config);
 
