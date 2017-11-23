@@ -111,9 +111,10 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         $http({
             method: 'GET',
             url: 'http://server.diandianplay.cn/wechat/pay/order?sid=' + $scope.sid + '&openID=' + $scope.myOpenID
-        }).then(function (data){
-            if(data != "null") {
-                $scope.config = data;
+        }).then(function (success){
+            console.log(success);
+            if(success != "null") {
+                $scope.config = success;
 
                 console.log($scope.config);
 
