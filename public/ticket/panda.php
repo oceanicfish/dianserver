@@ -34,9 +34,9 @@
 
             <div class="container text-center promo-code">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="折扣码" aria-label="promo-code">
+                    <input type="text" class="form-control" placeholder="折扣码" aria-label="promo-code" ng-model="promoCode">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">使用</button>
+                        <button class="btn btn-primary" type="button" ng-click="usePromoCode()">使用</button>
                     </span>
                 </div>
             </div>

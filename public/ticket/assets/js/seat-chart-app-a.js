@@ -8,6 +8,9 @@ app.controller('seatChartController_A', ['$http', '$scope', '$cookies','$cookieS
     $scope.selectedSeats = (!$cookies.getObject('selectedSeats')) ? [] : $cookies.getObject('selectedSeats');
     $scope.errorMessage = '';
 
+    $scope.singlePrice = 150;
+    $scope.totalPrice = (!$cookies.getObject('totalPrice')) ? 0 : $cookies.getObject('totalPrice');
+
     $scope.ticket = $cookies.getObject('ticket');
     if(!$scope.ticket)
         $scope.ticket = 0;
@@ -45,6 +48,8 @@ app.controller('seatChartController_A', ['$http', '$scope', '$cookies','$cookieS
                 angular.element('#' + seatNumber).removeClass("available").addClass("selected");
                 $scope.selectedSeats.push(seatNumber);
                 $cookies.putObject('selectedSeats', $scope.selectedSeats);
+                $scope.totalPrice += $scope.singlePrice;
+                $cookies.putObject('totalPrice', $scope.totalPrice);
                 console.log($scope.selectedSeats);
             }else {
                 console.log(seatNumber + "selected");
@@ -52,6 +57,8 @@ app.controller('seatChartController_A', ['$http', '$scope', '$cookies','$cookieS
                 var index = $scope.selectedSeats.indexOf(seatNumber);
                 $scope.selectedSeats.splice(index, 1);
                 $cookies.putObject('selectedSeats', $scope.selectedSeats);
+                $scope.totalPrice -= $scope.singlePrice;
+                $cookies.putObject('totalPrice', $scope.totalPrice);
                 console.log($scope.selectedSeats);
             }
 

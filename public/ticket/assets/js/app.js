@@ -15,11 +15,12 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         $scope.ticket = $cookies.getObject('ticket');
     }
 
+    $scope.totalPrice = (!$cookies.getObject('totalPrice')) ? 0 : $cookies.getObject('totalPrice');
+
     /**
      * check if the user has already selected seats
      * @type {Array}
      */
-
     $scope.setMessage = function () {
 
         $scope.selectedSeats = (!$cookies.getObject('selectedSeats')) ? [] : $cookies.getObject('selectedSeats');
@@ -29,7 +30,7 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
             $scope.seatText = '座位号: '
 
             for (var i = 0; i < $scope.selectedSeats.length; i++) {
-                $scope.selectedSeatsMessage = "总价：¥ " + $scope.selectedSeats.length * 150;
+                $scope.selectedSeatsMessage = "总价：¥ " + $scope.totalPrice;
                 $scope.seatText += "[" + $scope.selectedSeats[i] + "]";
             }
         }else {
@@ -86,6 +87,15 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         }
     }
 
+    $scope.promoCode = '';
+
+    $scope.usePromoCode = function () {
+        if ($scope.promoCode == '1BFX68') {
+            $scope.totalPrice = $scope.totalPrice * 0.7;
+            $scope.selectedSeatsMessage = "总价：¥ " + $scope.totalPrice;
+        }
+    }
+
     /**
      * buy button clicked
      */
@@ -93,38 +103,41 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
 
         console.log($cookies.getAll());
         $cookies.remove('selectedSeats');
+        $cookies.remove('ticket');
+        $cookies.remove('totalPrice');
+        $scope.ticket = 1;
         $scope.setMessage();
         console.log($cookies.getAll());
-        // $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.myOpenID)
-        //     .success(function(data) {
-        //         if(data != "null") {
-        //             $scope.config = data;
-        //
-        //             $scope.payStr = {
-        //                 appId: $scope.config.appId,
-        //                 nonceStr: $scope.config.nonceStr,
-        //                 package: $scope.config.package,
-        //                 signType: $scope.config.signType,
-        //                 paySign: $scope.config.paySign,
-        //                 timeStamp: String($scope.config.timestamp)
-        //             };
-        //
-        //             WeixinJSBridge.invoke(
-        //                 'getBrandWCPayRequest',
-        //                 $scope.payStr,
-        //                 function(res){
-        //                     if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-        //
-        //                         // 使用以上方式判断前端返回,微信团队郑重提示：
-        //                         // res.err_msg将在用户支付成功后返回
-        //                         // ok，但并不保证它绝对可靠。
-        //                         alert("paid successfully");
-        //                     }
-        //                 }
-        //             );
-        //
-        //         }
-        //     });
+        $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.myOpenID)
+            .success(function(data) {
+                if(data != "null") {
+                    $scope.config = data;
+
+                    $scope.payStr = {
+                        appId: $scope.config.appId,
+                        nonceStr: $scope.config.nonceStr,
+                        package: $scope.config.package,
+                        signType: $scope.config.signType,
+                        paySign: $scope.config.paySign,
+                        timeStamp: String($scope.config.timestamp)
+                    };
+
+                    WeixinJSBridge.invoke(
+                        'getBrandWCPayRequest',
+                        $scope.payStr,
+                        function(res){
+                            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+
+                                // 使用以上方式判断前端返回,微信团队郑重提示：
+                                // res.err_msg将在用户支付成功后返回
+                                // ok，但并不保证它绝对可靠。
+                                alert("paid successfully");
+                            }
+                        }
+                    );
+
+                }
+            });
     }
 
     $scope.setMessage();
