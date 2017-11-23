@@ -79,8 +79,18 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         if ($scope.ticket > 1) {
             $scope.ticket = $scope.ticket - 1;
             console.log("$scope.selectedKidSeats : " + $scope.selectedSeats.length);
-            if ($scope.selectedSeats.length > 0 && $scope.selectedSeats.length >= $scope.ticket)
-                $scope.selectedSeats.splice($scope.selectedSeats.length - 1, 1);
+            if ($scope.selectedSeats.length > 0 && $scope.selectedSeats.length >= $scope.ticket) {
+                var lastIndex = $scope.selectedSeats.length - 1;
+                var lastSelection = $scope.selectedSeats[lastIndex];
+                var lastPrice = 50;
+                if (lastSelection.startsWith('A') || lastSelection.startsWith('B'))
+                    lastPrice = 150;
+                if (lastSelection.startsWith('C'))
+                    lastPrice = 100;
+
+                $scope.selectedSeats.splice(lastIndex, 1);
+                $scope.totalPrice -= lastPrice;
+            }
             $cookies.putObject('selectedSeats', $scope.selectedSeats);
             $scope.setMessage();
             $cookies.putObject('ticket', $scope.ticket);
@@ -102,6 +112,10 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
     $scope.buy = function () {
 
         // console.log($cookies.getAll());
+        if ($scope.totalPrice == 0) {
+            alert("您还没有选座");
+            return false;
+        }
 
         /**
          * wechat pay
