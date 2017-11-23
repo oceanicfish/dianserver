@@ -30,7 +30,7 @@
                 <a class="btn btn-small btn-success" href="seat-area.php" style="padding: 5px 15px;">{{seatText}}</a>
             </div>
 
-            <div class="container text-center">{{selectedSeatsMessage}}</div>
+            <div class="container text-center" style="padding-bottom: 5px;">{{selectedSeatsMessage}}</div>
 
             <div class="container text-center promo-code">
                 <div class="input-group">
