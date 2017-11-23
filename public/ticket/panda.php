@@ -19,18 +19,27 @@
             <h4 class="showname">《飞翔吧！潘达》</h4>
             <p class="text-danger">2017年12月17日 - 嘉里中心</p>
             <img src="assets/images/clipart-of-raffle-tickets-14.png" style="height: 100px;">
-            <h6 style="padding-top: 15px;">亲子套票</h6>
-            <p>(包含一张大人票和一张儿童票)</p>
-            <div class="container text-center">
+            <h6 style="padding-top: 8px;">购票须知</h6>
+            <p class="attention-word">A区和B区为儿童专区,家长不能坐!</p>
+            <div class="container text-center btn-area">
                 <label class="btn btn-small btn-warning" ng-click="deleteOne()"><i class="fa fa-minus"></i> </label>
-                &nbsp;&nbsp; {{ticket}} 套 &nbsp;&nbsp;
+                &nbsp;&nbsp; {{ticket}} 张 &nbsp;&nbsp;
                 <label class="btn btn-small btn-primary" ng-click="addOne()"><i class="fa fa-plus"></i> </label>
             </div>
-            <div class="container text-center">
-                <a class="btn btn-small btn-success" href="seat-area.php" style="padding: 5px 55px;">{{seatText}}</a>
+            <div class="container text-center btn-area">
+                <a class="btn btn-small btn-success" href="seat-area.php" style="padding: 5px 15px;">{{seatText}}</a>
             </div>
 
             <div class="container text-center">{{selectedSeatsMessage}}</div>
+
+            <div class="container text-center promo-code">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="折扣码" aria-label="promo-code">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">使用</button>
+                    </span>
+                </div>
+            </div>
         </div>
 
         <div class="buy text-center">

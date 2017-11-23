@@ -87,10 +87,7 @@
     </div>
 </div>
 <div class="container text-center" style="padding-top: 5px;">
-    <p>您可以选<span style="font-size: 20px;">{{availableKidSeatsAmount}}</span>个
-        <span class="text-danger">儿童座位</span>和
-        <span style="font-size: 20px;">{{availableAdultSeatsAmount}}</span>个
-        <span class="text-primary">家长座位</span> </p>
+    <p>您可以选<span style="font-size: 20px;">{{availableSeatsAmount}}</span>个<span class="text-danger">座位</span> </p>
 </div>
 
 <div class="row text-center bg-info buy"><a href="panda.php">返回购票页</a></div>

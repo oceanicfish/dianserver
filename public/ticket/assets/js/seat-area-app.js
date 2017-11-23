@@ -11,10 +11,8 @@ app.controller('seatAreaController', ['$http', '$scope', '$cookies','$cookieStor
 
     console.log($cookies.getObject('selectedKidSeats'));
 
-    $scope.selectedKidSeats = (!$cookies.getObject('selectedKidSeats')) ? [] : $cookies.getObject('selectedKidSeats');
-    $scope.selectedAdultSeats = (!$cookies.getObject('selectedAdultSeats')) ? [] : $cookies.getObject('selectedAdultSeats');
-    $scope.availableKidSeatsAmount =  $scope.ticket - $scope.selectedKidSeats.length;
-    $scope.availableAdultSeatsAmount = $scope.ticket - $scope.selectedAdultSeats.length;
+    $scope.selectedSeats = (!$cookies.getObject('selectedSeats')) ? [] : $cookies.getObject('selectedSeats');
+    $scope.availableSeatsAmount =  $scope.ticket - $scope.selectedSeats.length;
 
     console.log($scope.ticket);
 }]);

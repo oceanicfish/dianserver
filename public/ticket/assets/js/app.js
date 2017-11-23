@@ -22,21 +22,19 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
 
     $scope.setMessage = function () {
 
-        $scope.selectedKidSeats = (!$cookies.getObject('selectedKidSeats')) ? [] : $cookies.getObject('selectedKidSeats');
-        $scope.selectedAdultSeats = (!$cookies.getObject('selectedAdultSeats')) ? [] : $cookies.getObject('selectedAdultSeats');
+        $scope.selectedSeats = (!$cookies.getObject('selectedSeats')) ? [] : $cookies.getObject('selectedSeats');
 
-        if ($scope.selectedKidSeats.length > 0 || $scope.selectedAdultSeats.length > 0) {
-            ;
-            $scope.selectedSeatsMessage = '您选择的座位：';
+        if ($scope.selectedSeats.length > 0) {
 
-            for (var i = 0; i < $scope.selectedKidSeats.length; i++) {
-                $scope.selectedSeatsMessage += " [ " + $scope.selectedKidSeats[i] + " ]";
-            }
+            $scope.selectedSeatsMessage = '总价：';
+            $scope.seatText = '座位号: '
 
-            for (var i = 0; i < $scope.selectedAdultSeats.length; i++) {
-                $scope.selectedAdultSeats += $scope.selectedAdultSeats[i];
+            for (var i = 0; i < $scope.selectedSeats.length; i++) {
+                $scope.selectedSeatsMessage += "¥ " + $scope.selectedSeats.length * 150;
+                $scope.seatText += "[" + $scope.selectedSeats[i] + "]";
             }
         }else {
+            $scope.seatText = '选座';
             $scope.selectedSeatsMessage = '还没选座';
         }
     }
@@ -45,19 +43,11 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
      *
      * @type {*}
      */
-
-    $scope.kidTicket = $scope.ticket;
-    $scope.adultTicket = $scope.ticket;
-    $scope.kidTicketPrice = 0;
-    $scope.adultTicketPrice = 0;
-    $scope.sum = $scope.kidTicketPrice + $scope.adultTicketPrice;
     $scope.prepayid = '';
     $scope.config = '';
     $scope.sid = 1;
     $scope.myOpenID = '';
-    $scope.seatText = '选座';
-    $scope.kidSeats = [];
-    $scope.adultSeats = [];
+    $scope.seatText = ' 选座 ';
 
     /**
      * setup openID
@@ -75,8 +65,6 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
     $scope.addOne = function() {
         if ($scope.ticket < 20) {
             $scope.ticket = $scope.ticket + 1;
-            $scope.kidTicket = $scope.ticket;
-            $scope.adultTicket = $scope.ticket;
             $cookies.putObject('ticket', $scope.ticket);
             // $cookieStore.put('ticket', $scope.ticket);
             console.log($cookies);
@@ -90,13 +78,11 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
     $scope.deleteOne = function() {
         if ($scope.ticket > 1) {
             $scope.ticket = $scope.ticket - 1;
-            console.log($scope.selectedKidSeats.length);
-            if ($scope.selectedKidSeats.length > 0 && $scope.selectedKidSeats.length >= $scope.ticket)
-                $scope.selectedKidSeats.splice($scope.selectedKidSeats.length - 1, 1);
-            if ($scope.selectedAdultSeats.length > 0)
-                $scope.selectedAdultSeats.splice($scope.selectedAdultSeats.length - 1, 1);
-            $scope.kidTicket = $scope.ticket;
-            $scope.adultTicket = $scope.ticket;
+            console.log("$scope.selectedKidSeats : " + $scope.selectedSeats.length);
+            if ($scope.selectedSeats.length > 0 && $scope.selectedSeats.length >= $scope.ticket)
+                $scope.selectedSeats.splice($scope.selectedSeats.length - 1, 1);
+            $cookies.putObject('selectedSeats', $scope.selectedSeats);
+            $scope.setMessage();
             $cookies.putObject('ticket', $scope.ticket);
         }
     }
@@ -107,8 +93,7 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
     $scope.buy = function () {
 
         console.log($cookies.getAll());
-        $cookies.remove('selectedKidSeats');
-        $cookies.remove('selectedAdultSeats');
+        $cookies.remove('selectedSeats');
         $scope.setMessage();
         console.log($cookies.getAll());
         // $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.myOpenID)
