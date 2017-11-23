@@ -102,12 +102,6 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
     $scope.buy = function () {
 
         console.log($cookies.getAll());
-        $cookies.remove('selectedSeats');
-        $cookies.remove('ticket');
-        $cookies.remove('totalPrice');
-        $scope.ticket = 1;
-        $scope.setMessage();
-        console.log($cookies.getAll());
 
         /**
          * wechat pay
@@ -137,6 +131,12 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
                                 // res.err_msg将在用户支付成功后返回
                                 // ok，但并不保证它绝对可靠。
                                 alert("paid successfully");
+                                $cookies.remove('selectedSeats');
+                                $cookies.remove('ticket');
+                                $cookies.remove('totalPrice');
+                                $scope.ticket = 1;
+                                $scope.setMessage();
+                                console.log($cookies.getAll());
                             }
                         }
                     );
