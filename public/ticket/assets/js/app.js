@@ -101,48 +101,95 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
      */
     $scope.buy = function () {
 
-        console.log($cookies.getAll());
+        // console.log($cookies.getAll());
 
         /**
          * wechat pay
          */
 
-        $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.myOpenID)
-            .success(function(data) {
-                if(data != "null") {
-                    $scope.config = data;
 
-                    $scope.payStr = {
-                        appId: $scope.config.appId,
-                        nonceStr: $scope.config.nonceStr,
-                        package: $scope.config.package,
-                        signType: $scope.config.signType,
-                        paySign: $scope.config.paySign,
-                        timeStamp: String($scope.config.timestamp)
-                    };
+        $http({
+            method: 'GET',
+            url: 'http://server.diandianplay.cn/wechat/pay/order?sid=' + $scope.sid + '&openID=' + $scope.myOpenID
+        }).then(function (data){
+            if(data != "null") {
+                $scope.config = data;
 
-                    WeixinJSBridge.invoke(
-                        'getBrandWCPayRequest',
-                        $scope.payStr,
-                        function(res){
-                            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                console.log($scope.config);
 
-                                // 使用以上方式判断前端返回,微信团队郑重提示：
-                                // res.err_msg将在用户支付成功后返回
-                                // ok，但并不保证它绝对可靠。
-                                alert("paid successfully");
-                                $cookies.remove('selectedSeats');
-                                $cookies.remove('ticket');
-                                $cookies.remove('totalPrice');
-                                $scope.ticket = 1;
-                                $scope.setMessage();
-                                console.log($cookies.getAll());
-                            }
+                $scope.payStr = {
+                    appId: $scope.config.appId,
+                    nonceStr: $scope.config.nonceStr,
+                    package: $scope.config.package,
+                    signType: $scope.config.signType,
+                    paySign: $scope.config.paySign,
+                    timeStamp: String($scope.config.timestamp)
+                };
+
+                WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    $scope.payStr,
+                    function(res){
+                        if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+
+                            // 使用以上方式判断前端返回,微信团队郑重提示：
+                            // res.err_msg将在用户支付成功后返回
+                            // ok，但并不保证它绝对可靠。
+                            $cookies.remove('selectedSeats');
+                            $cookies.remove('ticket');
+                            $cookies.remove('totalPrice');
+                            $scope.ticket = 1;
+                            $scope.setMessage();
+                            console.log($cookies.getAll());
+                            alert("paid successfully");
+
                         }
-                    );
+                    }
+                );
 
-                }
-            });
+            }
+        },function (error){
+            alert("支付失败");
+        });
+        // $http.get("http://server.diandianplay.cn/wechat/pay/order?sid=" + $scope.sid + "&openID=" + $scope.myOpenID)
+        //     .success(function(data) {
+        //         if(data != "null") {
+        //             $scope.config = data;
+        //
+        //             console.log($scope.config);
+        //
+        //             $scope.payStr = {
+        //                 appId: $scope.config.appId,
+        //                 nonceStr: $scope.config.nonceStr,
+        //                 package: $scope.config.package,
+        //                 signType: $scope.config.signType,
+        //                 paySign: $scope.config.paySign,
+        //                 timeStamp: String($scope.config.timestamp)
+        //             };
+        //
+        //             WeixinJSBridge.invoke(
+        //                 'getBrandWCPayRequest',
+        //                 $scope.payStr,
+        //                 function(res){
+        //                     if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+        //
+        //                         // 使用以上方式判断前端返回,微信团队郑重提示：
+        //                         // res.err_msg将在用户支付成功后返回
+        //                         // ok，但并不保证它绝对可靠。
+        //                         $cookies.remove('selectedSeats');
+        //                         $cookies.remove('ticket');
+        //                         $cookies.remove('totalPrice');
+        //                         $scope.ticket = 1;
+        //                         $scope.setMessage();
+        //                         console.log($cookies.getAll());
+        //                         alert("paid successfully");
+        //
+        //                     }
+        //                 }
+        //             );
+        //
+        //         }
+        //     });
     }
 
     $scope.setMessage();
