@@ -26,11 +26,10 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
 
         if ($scope.selectedSeats.length > 0) {
 
-            $scope.selectedSeatsMessage = '总价：';
             $scope.seatText = '座位号: '
 
             for (var i = 0; i < $scope.selectedSeats.length; i++) {
-                $scope.selectedSeatsMessage += "¥ " + $scope.selectedSeats.length * 150;
+                $scope.selectedSeatsMessage = "总价：¥ " + $scope.selectedSeats.length * 150;
                 $scope.seatText += "[" + $scope.selectedSeats[i] + "]";
             }
         }else {
