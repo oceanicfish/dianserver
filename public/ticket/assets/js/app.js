@@ -114,10 +114,12 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
         }).then(function (success){
             alert(success);
             if(success != "null") {
-                alert($scope.config);
                 $scope.config = success;
 
                 console.log($scope.config);
+
+                alert($scope.config);
+                alert($scope.config.appId);
 
                 $scope.payStr = {
                     appId: $scope.config.appId,
