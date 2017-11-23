@@ -112,14 +112,10 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
             method: 'GET',
             url: 'http://server.diandianplay.cn/wechat/pay/order?sid=' + $scope.sid + '&openID=' + $scope.myOpenID
         }).then(function (success){
-            alert(success);
+
             if(success != "null") {
+
                 $scope.config = success.data;
-
-                console.log($scope.config);
-
-                alert($scope.config);
-                alert($scope.config.appId);
 
                 $scope.payStr = {
                     appId: $scope.config.appId,
@@ -139,12 +135,15 @@ app.controller('ticketController', ['$http', '$scope','$window' ,'$cookies','$co
                             // 使用以上方式判断前端返回,微信团队郑重提示：
                             // res.err_msg将在用户支付成功后返回
                             // ok，但并不保证它绝对可靠。
+                            /**
+                             * remove all the cookie after pay successfully
+                             */
                             $cookies.remove('selectedSeats');
                             $cookies.remove('ticket');
                             $cookies.remove('totalPrice');
                             $scope.ticket = 1;
                             $scope.setMessage();
-                            console.log($cookies.getAll());
+
                             alert("paid successfully");
 
                         }
